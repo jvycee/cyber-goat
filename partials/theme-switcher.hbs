@@ -1,5 +1,6 @@
 {{!-- Theme switcher partial for the cyberpunk Ghost theme --}}
 
+{{#if @custom.theme_switcher}}
 <div class="theme-switcher" id="themeSwitcher">
     <div class="theme-switcher-container glass">
         <div class="theme-switcher-header">
@@ -59,6 +60,7 @@
         </div>
     </div>
 </div>
+{{/if}}
 
 {{!-- Theme Persistence Script --}}
 <script>
@@ -68,7 +70,7 @@
     const DEFAULT_THEME = 'cyberpunk';
     
     // Get saved theme or use default
-    const savedTheme = localStorage.getItem(THEME_KEY) || DEFAULT_THEME;
+    const savedTheme = localStorage.getItem(THEME_KEY) || '{{@custom.default_theme}}';
     
     // Apply theme immediately to prevent flash
     document.body.className = document.body.className.replace(/theme-\w+/g, '') + ' theme-' + savedTheme;

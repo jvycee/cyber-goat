@@ -28,6 +28,7 @@
             {{/if}}
             
             <div class="post-meta">
+                {{#if @custom.show_author_info}}
                 <div class="post-meta-group">
                     {{#if primary_author}}
                     <div class="post-author">
@@ -47,12 +48,15 @@
                     </div>
                     {{/if}}
                 </div>
+                {{/if}}
                 
                 <div class="post-meta-group">
                     <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">
                         {{date format="MMM DD, YYYY"}}
                     </time>
+                    {{#if @custom.show_reading_time}}
                     <span class="post-reading-time">{{reading_time}} min read</span>
+                    {{/if}}
                 </div>
             </div>
         </div>
@@ -119,6 +123,36 @@
                         {{/if}}
                     </div>
                 </div>
+            </div>
+        </div>
+        {{/if}}
+
+        {{!-- Social Sharing --}}
+        {{#if @custom.social_sharing}}
+        <div class="social-sharing glass">
+            <h4 class="sharing-title">Share this post</h4>
+            <div class="sharing-buttons">
+                <a href="https://twitter.com/intent/tweet?text={{encode title}}&url={{url absolute="true"}}" 
+                   class="sharing-btn btn btn-ghost btn-sm" 
+                   target="_blank" 
+                   rel="noopener"
+                   aria-label="Share on Twitter">
+                    🐦 Twitter
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}" 
+                   class="sharing-btn btn btn-ghost btn-sm" 
+                   target="_blank" 
+                   rel="noopener"
+                   aria-label="Share on Facebook">
+                    📘 Facebook
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{url absolute="true"}}" 
+                   class="sharing-btn btn btn-ghost btn-sm" 
+                   target="_blank" 
+                   rel="noopener"
+                   aria-label="Share on LinkedIn">
+                    💼 LinkedIn
+                </a>
             </div>
         </div>
         {{/if}}

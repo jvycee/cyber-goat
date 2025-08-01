@@ -58,7 +58,7 @@
         "image": "{{img_url feature_image size="l"}}",
         {{/if}}
         "datePublished": "{{date format="YYYY-MM-DD"}}",
-        "dateModified": "{{updated_at format="YYYY-MM-DD"}}",
+        "dateModified": "{{date published_at format="YYYY-MM-DD"}}",
         "author": {
             "@type": "Person",
             "name": "{{primary_author.name}}",
@@ -79,11 +79,14 @@
     
     {{!-- CSS --}}
     <link rel="stylesheet" type="text/css" href="{{asset "css/screen.css"}}">
+    {{#if @custom.enable_code_syntax}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    {{/if}}
     
     {{!-- Ghost head --}}
     {{ghost_head}}
 </head>
-<body class="{{body_class}} theme-cyberpunk">
+<body class="{{body_class}} theme-cyberpunk {{#if @custom.enable_animations}}animations-enabled{{/if}} neon-{{@custom.neon_intensity}}">
     <div class="cyberpunk-grid"></div>
     
     <div class="app-container">
@@ -106,6 +109,11 @@
     <script src="{{asset "js/theme-switcher.js"}}"></script>
     <script src="{{asset "js/neon-effects.js"}}"></script>
     <script src="{{asset "js/main.js"}}"></script>
+    {{#if @custom.enable_code_syntax}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    {{/if}}
     
     {{!-- Ghost foot --}}
     {{ghost_foot}}
