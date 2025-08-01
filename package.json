@@ -98,6 +98,11 @@
         "options": ["minimal", "standard"],
         "default": "standard",
         "group": "layout"
+      },
+      "show_theme_credit": {
+        "type": "boolean",
+        "default": true,
+        "group": "layout"
       }
     }
   },

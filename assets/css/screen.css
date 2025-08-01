@@ -545,3 +545,37 @@ blockquote {
     font-size: var(--font-sm);
   }
 }
+
+/* =====================================================
+   KOENIG EDITOR SUPPORT
+   ===================================================== */
+
+/* Required Koenig classes for Ghost editor support */
+.kg-width-wide {
+  width: 100%;
+  max-width: calc(100% + 8rem);
+  margin-left: -4rem;
+  margin-right: -4rem;
+  position: relative;
+}
+
+.kg-width-full {
+  width: 100vw;
+  max-width: none;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .kg-width-wide {
+    max-width: calc(100% + 2rem);
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+  
+  .kg-width-full {
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}

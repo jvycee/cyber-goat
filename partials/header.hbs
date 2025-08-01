@@ -28,7 +28,7 @@
             </button>
             
             {{!-- Member Actions --}}
-            {{#if @labs.members}}
+            {{#if @site.members_enabled}}
             <div class="member-actions">
                 {{#if @member}}
                 <div class="member-menu">
@@ -86,7 +86,7 @@
             {{> navigation mobile=true}}
             
             {{!-- Mobile Member Actions --}}
-            {{#if @labs.members}}
+            {{#if @site.members_enabled}}
             <div class="mobile-member-actions">
                 {{#if @member}}
                 <div class="mobile-member-info">

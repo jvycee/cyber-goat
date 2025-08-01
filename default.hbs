@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{meta_title}}</title>
-    <meta name="description" content="{{meta_description}}">
     <link rel="canonical" href="{{url absolute="true"}}">
     <meta name="referrer" content="no-referrer-when-downgrade">
     
@@ -17,7 +16,6 @@
     <meta property="og:site_name" content="{{@site.title}}">
     <meta property="og:type" content="{{#is "post"}}article{{else}}website{{/is}}">
     <meta property="og:title" content="{{meta_title}}">
-    <meta property="og:description" content="{{meta_description}}">
     <meta property="og:url" content="{{url absolute="true"}}">
     {{#if feature_image}}
     <meta property="og:image" content="{{img_url feature_image size="l"}}">
@@ -28,7 +26,6 @@
     {{!-- Twitter Card --}}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{meta_title}}">
-    <meta name="twitter:description" content="{{meta_description}}">
     <meta name="twitter:url" content="{{url absolute="true"}}">
     {{#if feature_image}}
     <meta name="twitter:image" content="{{img_url feature_image size="l"}}">
@@ -57,7 +54,6 @@
             "@id": "{{url absolute="true"}}"
         },
         "headline": "{{title}}",
-        "description": "{{meta_description}}",
         {{#if feature_image}}
         "image": "{{img_url feature_image size="l"}}",
         {{/if}}
