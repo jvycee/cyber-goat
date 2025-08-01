@@ -1,0 +1,395 @@
+/*
+ * Cyberpunk Ghost Theme - Color Schemes
+ * Complete color system with 5 distinct cyberpunk themes
+ */
+
+/* =====================================================
+   BASE COLOR SYSTEM & VARIABLES
+   ===================================================== */
+
+:root {
+  /* Animation & Timing */
+  --duration-fast: 0.15s;
+  --duration-normal: 0.3s;
+  --duration-slow: 0.5s;
+  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* Typography */
+  --font-main: 'JetBrains Mono', 'Courier New', monospace;
+  --font-display: 'Orbitron', 'Arial Black', sans-serif;
+  --font-xs: 0.75rem;    /* 12px */
+  --font-sm: 0.875rem;   /* 14px */
+  --font-base: 1rem;     /* 16px */
+  --font-lg: 1.125rem;   /* 18px */
+  --font-xl: 1.25rem;    /* 20px */
+  --font-2xl: 1.5rem;    /* 24px */
+  --font-3xl: 1.875rem;  /* 30px */
+
+  /* Spacing */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-12: 3rem;     /* 48px */
+
+  /* Layout */
+  --container-max: 1400px;
+  --sidebar-width: 320px;
+  --header-height: 64px;
+
+  /* Base Colors (Default - Cyberpunk Theme) */
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111118;
+  --bg-tertiary: #1a1a24;
+  --bg-quaternary: #242437;
+  --bg-hover: #2a2a3d;
+  --bg-active: #3a3a54;
+  --bg-glass: rgba(26, 26, 36, 0.8);
+  --bg-card: rgba(36, 36, 55, 0.95);
+
+  /* Neon Colors */
+  --neon-cyan: #00ffff;
+  --neon-pink: #ff0080;
+  --neon-green: #00ff41;
+  --neon-purple: #8b5cf6;
+  --neon-orange: #ff6b00;
+  --neon-blue: #0080ff;
+
+  /* Text Colors */
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --text-accent: #ffffff;
+  --text-neon: var(--neon-cyan);
+  --text-glow: var(--neon-pink);
+
+  /* UI Elements */
+  --border: #334155;
+  --border-glow: rgba(0, 255, 255, 0.3);
+  --accent: var(--neon-cyan);
+  --accent-secondary: var(--neon-pink);
+  --button-bg: var(--bg-tertiary);
+  --button-hover: var(--bg-quaternary);
+  --error: #ff4757;
+  --success: var(--neon-green);
+  --warning: var(--neon-orange);
+
+  /* Shadows */
+  --shadow-glow: 0 0 20px rgba(0, 255, 255, 0.3);
+  --shadow-glow-pink: 0 0 20px rgba(255, 0, 128, 0.3);
+  --shadow-glow-green: 0 0 20px rgba(0, 255, 65, 0.3);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 12px 48px rgba(0, 0, 0, 0.6);
+}
+
+/* =====================================================
+   THEME 1: CYBERPUNK (DEFAULT)
+   Classic blue-cyan cyberpunk aesthetic with pink accents
+   ===================================================== */
+
+.theme-cyberpunk {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111118;
+  --bg-tertiary: #1a1a24;
+  --bg-quaternary: #242437;
+  --bg-hover: #2a2a3d;
+  --bg-active: #3a3a54;
+  --bg-glass: rgba(26, 26, 36, 0.8);
+  --bg-card: rgba(36, 36, 55, 0.95);
+
+  --neon-cyan: #00ffff;
+  --neon-pink: #ff0080;
+  --neon-green: #00ff41;
+  --neon-purple: #8b5cf6;
+  --neon-orange: #ff6b00;
+  --neon-blue: #0080ff;
+
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --text-accent: #ffffff;
+  --text-neon: var(--neon-cyan);
+  --text-glow: var(--neon-pink);
+
+  --border: #334155;
+  --border-glow: rgba(0, 255, 255, 0.3);
+  --accent: var(--neon-cyan);
+  --accent-secondary: var(--neon-pink);
+  --button-bg: var(--bg-tertiary);
+  --button-hover: var(--bg-quaternary);
+
+  --shadow-glow: 0 0 20px rgba(0, 255, 255, 0.3);
+  --shadow-glow-pink: 0 0 20px rgba(255, 0, 128, 0.3);
+  --shadow-glow-green: 0 0 20px rgba(0, 255, 65, 0.3);
+}
+
+/* =====================================================
+   THEME 2: NEON
+   Purple-pink dominant theme with high contrast
+   ===================================================== */
+
+.theme-neon {
+  --bg-primary: #0f0515;
+  --bg-secondary: #1a0a1f;
+  --bg-tertiary: #251230;
+  --bg-quaternary: #301a40;
+  --bg-hover: #3b2250;
+  --bg-active: #462a60;
+  --bg-glass: rgba(37, 18, 48, 0.8);
+  --bg-card: rgba(48, 26, 64, 0.95);
+
+  --neon-cyan: #00d9ff;
+  --neon-pink: #ff0080;
+  --neon-green: #00ff65;
+  --neon-purple: #d946ef;
+  --neon-orange: #ff6b00;
+  --neon-blue: #4c1d95;
+
+  --text-primary: #f1e6ff;
+  --text-secondary: #c084fc;
+  --text-tertiary: #a855f7;
+  --text-accent: #ffffff;
+  --text-neon: var(--neon-pink);
+  --text-glow: var(--neon-purple);
+
+  --border: #6b21a8;
+  --border-glow: rgba(255, 0, 128, 0.4);
+  --accent: var(--neon-pink);
+  --accent-secondary: var(--neon-purple);
+  --button-bg: var(--bg-tertiary);
+  --button-hover: var(--bg-quaternary);
+
+  --shadow-glow: 0 0 20px rgba(255, 0, 128, 0.4);
+  --shadow-glow-pink: 0 0 20px rgba(217, 70, 239, 0.4);
+  --shadow-glow-green: 0 0 20px rgba(0, 255, 101, 0.4);
+}
+
+/* =====================================================
+   THEME 3: MATRIX
+   Green monochrome inspired by classic hacker aesthetics
+   ===================================================== */
+
+.theme-matrix {
+  --bg-primary: #000000;
+  --bg-secondary: #001100;
+  --bg-tertiary: #002200;
+  --bg-quaternary: #003300;
+  --bg-hover: #004400;
+  --bg-active: #005500;
+  --bg-glass: rgba(0, 34, 0, 0.8);
+  --bg-card: rgba(0, 51, 0, 0.95);
+
+  --neon-cyan: #00ff88;
+  --neon-pink: #00ff41;
+  --neon-green: #00ff41;
+  --neon-purple: #39ff14;
+  --neon-orange: #7fff00;
+  --neon-blue: #00ff7f;
+
+  --text-primary: #00ff41;
+  --text-secondary: #00cc33;
+  --text-tertiary: #009925;
+  --text-accent: #00ff88;
+  --text-neon: var(--neon-green);
+  --text-glow: var(--neon-cyan);
+
+  --border: #006600;
+  --border-glow: rgba(0, 255, 65, 0.4);
+  --accent: var(--neon-green);
+  --accent-secondary: var(--neon-cyan);
+  --button-bg: var(--bg-tertiary);
+  --button-hover: var(--bg-quaternary);
+
+  --shadow-glow: 0 0 20px rgba(0, 255, 65, 0.4);
+  --shadow-glow-pink: 0 0 20px rgba(0, 255, 136, 0.4);
+  --shadow-glow-green: 0 0 20px rgba(57, 255, 20, 0.4);
+}
+
+/* =====================================================
+   THEME 4: VAPORWAVE
+   Purple-pink retro-futuristic theme with warm accents
+   ===================================================== */
+
+.theme-vaporwave {
+  --bg-primary: #120458;
+  --bg-secondary: #1e0a78;
+  --bg-tertiary: #2a1098;
+  --bg-quaternary: #3616b8;
+  --bg-hover: #421cd8;
+  --bg-active: #4e22f8;
+  --bg-glass: rgba(42, 16, 152, 0.8);
+  --bg-card: rgba(54, 22, 184, 0.95);
+
+  --neon-cyan: #00d4ff;
+  --neon-pink: #ff006e;
+  --neon-green: #00ff9f;
+  --neon-purple: #bf00ff;
+  --neon-orange: #ff1744;
+  --neon-blue: #2979ff;
+
+  --text-primary: #ffeaa7;
+  --text-secondary: #fab1a0;
+  --text-tertiary: #e17055;
+  --text-accent: #fdcb6e;
+  --text-neon: var(--neon-pink);
+  --text-glow: var(--neon-purple);
+
+  --border: #6c5ce7;
+  --border-glow: rgba(255, 0, 110, 0.4);
+  --accent: var(--neon-pink);
+  --accent-secondary: var(--neon-purple);
+  --button-bg: var(--bg-tertiary);
+  --button-hover: var(--bg-quaternary);
+
+  --shadow-glow: 0 0 20px rgba(255, 0, 110, 0.4);
+  --shadow-glow-pink: 0 0 20px rgba(191, 0, 255, 0.4);
+  --shadow-glow-green: 0 0 20px rgba(0, 255, 159, 0.4);
+}
+
+/* =====================================================
+   THEME 5: SYNTHWAVE
+   Orange-gold theme with blue accents
+   ===================================================== */
+
+.theme-synthwave {
+  --bg-primary: #0d1421;
+  --bg-secondary: #162030;
+  --bg-tertiary: #1f2c3f;
+  --bg-quaternary: #28384e;
+  --bg-hover: #31445d;
+  --bg-active: #3a506c;
+  --bg-glass: rgba(31, 44, 63, 0.8);
+  --bg-card: rgba(40, 56, 78, 0.95);
+
+  --neon-cyan: #00bfff;
+  --neon-pink: #ff1493;
+  --neon-green: #00ff7f;
+  --neon-purple: #9370db;
+  --neon-orange: #ff9500;
+  --neon-blue: #00bfff;
+
+  --text-primary: #ffd700;
+  --text-secondary: #ffa500;
+  --text-tertiary: #ff8c00;
+  --text-accent: #ffff00;
+  --text-neon: var(--neon-orange);
+  --text-glow: var(--neon-blue);
+
+  --border: #4682b4;
+  --border-glow: rgba(255, 149, 0, 0.4);
+  --accent: var(--neon-orange);
+  --accent-secondary: var(--neon-blue);
+  --button-bg: var(--bg-tertiary);
+  --button-hover: var(--bg-quaternary);
+
+  --shadow-glow: 0 0 20px rgba(255, 149, 0, 0.4);
+  --shadow-glow-pink: 0 0 20px rgba(0, 191, 255, 0.4);
+  --shadow-glow-green: 0 0 20px rgba(0, 255, 127, 0.4);
+}
+
+/* =====================================================
+   THEME-SPECIFIC OVERRIDES
+   ===================================================== */
+
+/* Matrix theme specific styles */
+.theme-matrix .cyberpunk-grid {
+  background-image:
+    linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+}
+
+.theme-matrix code {
+  color: var(--neon-green);
+  background: rgba(0, 255, 65, 0.1);
+}
+
+/* Neon theme specific styles */
+.theme-neon .cyberpunk-grid {
+  background-image:
+    linear-gradient(rgba(255, 0, 128, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 128, 0.03) 1px, transparent 1px);
+}
+
+.theme-neon code {
+  color: var(--neon-pink);
+  background: rgba(255, 0, 128, 0.1);
+}
+
+/* Vaporwave theme specific styles */
+.theme-vaporwave .cyberpunk-grid {
+  background-image:
+    linear-gradient(rgba(255, 0, 110, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 110, 0.03) 1px, transparent 1px);
+}
+
+.theme-vaporwave code {
+  color: var(--neon-pink);
+  background: rgba(255, 0, 110, 0.1);
+}
+
+/* Synthwave theme specific styles */
+.theme-synthwave .cyberpunk-grid {
+  background-image:
+    linear-gradient(rgba(255, 149, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 149, 0, 0.03) 1px, transparent 1px);
+}
+
+.theme-synthwave code {
+  color: var(--neon-orange);
+  background: rgba(255, 149, 0, 0.1);
+}
+
+/* =====================================================
+   ACCESSIBILITY & REDUCED MOTION
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =====================================================
+   HIGH CONTRAST MODE SUPPORT
+   ===================================================== */
+
+@media (prefers-contrast: high) {
+  :root {
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff;
+    --border: #ffffff;
+    --border-glow: rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* =====================================================
+   PRINT STYLES
+   ===================================================== */
+
+@media print {
+  .theme-switcher,
+  .cyberpunk-grid,
+  .search-overlay,
+  .mobile-navigation {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .glass {
+    background: white !important;
+    border: 1px solid #ccc !important;
+  }
+}

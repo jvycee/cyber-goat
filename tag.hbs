@@ -1,0 +1,125 @@
+{{!< default}}
+
+{{!-- Tag template for the cyberpunk Ghost theme --}}
+
+<div class="tag-container">
+    {{#tag}}
+    <header class="tag-header glass">
+        <div class="tag-info">
+            {{#if feature_image}}
+            <div class="tag-feature-image">
+                <img src="{{img_url feature_image size="l"}}" alt="{{name}}" class="cyberpunk-image">
+                <div class="feature-image-overlay"></div>
+            </div>
+            {{/if}}
+            
+            <div class="tag-content">
+                <h1 class="tag-name text-glow">
+                    <span class="tag-hash">#</span>{{name}}
+                </h1>
+                
+                {{#if description}}
+                <p class="tag-description">{{description}}</p>
+                {{/if}}
+                
+                <div class="tag-meta">
+                    <div class="tag-stats">
+                        <div class="tag-stat">
+                            <span class="stat-number">{{count_posts}}</span>
+                            <span class="stat-label">Posts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    {{/tag}}
+
+    {{!-- Tag Posts --}}
+    <section class="tag-posts">
+        <div class="section-header">
+            <h2 class="section-title">Posts tagged with {{tag.name}}</h2>
+            <div class="section-decoration">
+                <span class="neon-dot"></span>
+                <span class="neon-line-small"></span>
+            </div>
+        </div>
+
+        {{#if posts}}
+        <div class="posts-grid">
+            {{#foreach posts}}
+                {{> post-card}}
+            {{/foreach}}
+        </div>
+
+        {{!-- Pagination --}}
+        {{#if pagination}}
+        <nav class="pagination-container">
+            <div class="pagination glass">
+                {{#if pagination.prev}}
+                <a href="{{page_url pagination.prev}}" class="pagination-btn pagination-prev">
+                    <span class="pagination-icon">←</span>
+                    <span class="pagination-text">Previous</span>
+                </a>
+                {{/if}}
+
+                <div class="pagination-info">
+                    <span class="pagination-current">{{pagination.page}}</span>
+                    <span class="pagination-separator">/</span>
+                    <span class="pagination-total">{{pagination.pages}}</span>
+                </div>
+
+                {{#if pagination.next}}
+                <a href="{{page_url pagination.next}}" class="pagination-btn pagination-next">
+                    <span class="pagination-text">Next</span>
+                    <span class="pagination-icon">→</span>
+                </a>
+                {{/if}}
+            </div>
+        </nav>
+        {{/if}}
+
+        {{else}}
+        <div class="no-posts glass">
+            <div class="no-posts-icon">🏷️</div>
+            <h3 class="no-posts-title">No posts found</h3>
+            <p class="no-posts-text">No posts have been tagged with "{{tag.name}}" yet.</p>
+        </div>
+        {{/if}}
+    </section>
+
+    {{!-- Related Tags --}}
+    {{#get "tags" filter="visibility:public" limit="6" order="count desc"}}
+    {{#if tags}}
+    <section class="related-tags">
+        <div class="section-header">
+            <h3 class="section-title">Explore Other Tags</h3>
+            <div class="section-decoration">
+                <span class="neon-dot"></span>
+                <span class="neon-line-small"></span>
+            </div>
+        </div>
+        
+        <div class="related-tags-grid">
+            {{#foreach tags}}
+            {{#unless slug (get "tag.slug")}}
+            <a href="{{url}}" class="related-tag-card glass">
+                <div class="related-tag-content">
+                    <h4 class="related-tag-name">
+                        <span class="tag-hash">#</span>{{name}}
+                    </h4>
+                    {{#if description}}
+                    <p class="related-tag-description">{{description words="15"}}</p>
+                    {{/if}}
+                    <div class="related-tag-count">
+                        {{count_posts}} posts
+                    </div>
+                </div>
+            </a>
+            {{/unless}}
+            {{/foreach}}
+        </div>
+    </section>
+    {{/if}}
+    {{/get}}
+</div>

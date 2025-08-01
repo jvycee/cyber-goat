@@ -1,0 +1,301 @@
+{{!< default}}
+
+{{!-- Error template for the cyberpunk Ghost theme --}}
+
+<div class="error-container">
+    <div class="error-content glass">
+        <div class="error-visual">
+            <div class="error-code text-glow">
+                {{#if statusCode}}
+                {{statusCode}}
+                {{else}}
+                ERROR
+                {{/if}}
+            </div>
+            <div class="error-glitch" data-text="{{#if statusCode}}{{statusCode}}{{else}}ERROR{{/if}}">
+                {{#if statusCode}}
+                {{statusCode}}
+                {{else}}
+                ERROR
+                {{/if}}
+            </div>
+        </div>
+        
+        <div class="error-details">
+            <h1 class="error-title">
+                {{#if statusCode}}
+                    {{#if (match statusCode "404")}}
+                        Page Not Found
+                    {{else if (match statusCode "500")}}
+                        Server Error
+                    {{else if (match statusCode "403")}}
+                        Access Denied
+                    {{else}}
+                        Oops! Something went wrong
+                    {{/if}}
+                {{else}}
+                    System Malfunction
+                {{/if}}
+            </h1>
+            
+            <p class="error-message">
+                {{#if statusCode}}
+                    {{#if (match statusCode "404")}}
+                        The page you're looking for has vanished into the digital void. It might have been moved, deleted, or never existed in the first place.
+                    {{else if (match statusCode "500")}}
+                        The server encountered an unexpected error. Our neural networks are working to restore functionality.
+                    {{else if (match statusCode "403")}}
+                        Access to this resource is restricted. Your security clearance is insufficient.
+                    {{else}}
+                        An unexpected error occurred in the system matrix. Please try again later.
+                    {{/if}}
+                {{else}}
+                    A critical system error has been detected. The mainframe is attempting automatic recovery.
+                {{/if}}
+            </p>
+            
+            <div class="error-actions">
+                <a href="{{@site.url}}" class="error-btn btn btn-primary">
+                    <span class="btn-icon">🏠</span>
+                    <span class="btn-text">Return Home</span>
+                </a>
+                
+                <button onclick="history.back()" class="error-btn btn btn-ghost">
+                    <span class="btn-icon">←</span>
+                    <span class="btn-text">Go Back</span>
+                </button>
+                
+                <button onclick="location.reload()" class="error-btn btn btn-ghost">
+                    <span class="btn-icon">🔄</span>
+                    <span class="btn-text">Retry</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    {{!-- Error Effects --}}
+    <div class="error-effects">
+        <div class="error-scan-line"></div>
+        <div class="error-grid-pattern"></div>
+        <div class="error-particles"></div>
+    </div>
+    
+    {{!-- Recent Posts (in case of 404) --}}
+    {{#if (match statusCode "404")}}
+    {{#get "posts" limit="3"}}
+    {{#if posts}}
+    <section class="error-suggestions">
+        <div class="section-header">
+            <h3 class="section-title">Recent Posts</h3>
+            <div class="section-decoration">
+                <span class="neon-dot"></span>
+                <span class="neon-line-small"></span>
+            </div>
+        </div>
+        
+        <div class="suggestions-grid">
+            {{#foreach posts}}
+            <article class="suggestion-card glass">
+                {{#if feature_image}}
+                <div class="suggestion-image">
+                    <a href="{{url}}">
+                        <img src="{{img_url feature_image size="m"}}" alt="{{title}}" class="cyberpunk-image">
+                    </a>
+                </div>
+                {{/if}}
+                
+                <div class="suggestion-content">
+                    <h4 class="suggestion-title">
+                        <a href="{{url}}">{{title}}</a>
+                    </h4>
+                    
+                    {{#if excerpt}}
+                    <p class="suggestion-excerpt">{{excerpt words="15"}}</p>
+                    {{/if}}
+                    
+                    <div class="suggestion-meta">
+                        <time datetime="{{date format="YYYY-MM-DD"}}">
+                            {{date format="MMM DD, YYYY"}}
+                        </time>
+                        <span class="reading-time">{{reading_time}} min read</span>
+                    </div>
+                </div>
+            </article>
+            {{/foreach}}
+        </div>
+    </section>
+    {{/if}}
+    {{/get}}
+    {{/if}}
+</div>
+
+<style>
+.error-code {
+    font-size: clamp(4rem, 15vw, 12rem);
+    font-family: var(--font-display);
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: var(--space-4);
+    position: relative;
+}
+
+.error-glitch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: clamp(4rem, 15vw, 12rem);
+    font-family: var(--font-display);
+    font-weight: 900;
+    color: var(--neon-pink);
+    opacity: 0.8;
+    animation: glitch 0.3s infinite;
+    pointer-events: none;
+}
+
+.error-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-4);
+    text-align: center;
+}
+
+.error-content {
+    padding: var(--space-8) var(--space-6);
+    border-radius: 16px;
+    margin-bottom: var(--space-8);
+    position: relative;
+    overflow: hidden;
+}
+
+.error-title {
+    font-size: var(--font-2xl);
+    margin-bottom: var(--space-4);
+    color: var(--text-accent);
+}
+
+.error-message {
+    font-size: var(--font-lg);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-6);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.error-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    justify-content: center;
+}
+
+.error-effects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.error-scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--error), transparent);
+    animation: scan-line 3s linear infinite;
+}
+
+.error-grid-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(255, 71, 87, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 71, 87, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.3;
+    animation: grid-pulse 4s ease-in-out infinite alternate;
+}
+
+.suggestions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-4);
+}
+
+.suggestion-card {
+    padding: var(--space-4);
+    border-radius: 12px;
+    text-align: left;
+    transition: all var(--duration-normal) var(--ease-out);
+}
+
+.suggestion-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-elevated);
+}
+
+.suggestion-image {
+    margin-bottom: var(--space-3);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.suggestion-image img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.suggestion-title {
+    margin-bottom: var(--space-2);
+    font-size: var(--font-lg);
+}
+
+.suggestion-title a {
+    color: var(--text-accent);
+    text-decoration: none;
+}
+
+.suggestion-title a:hover {
+    color: var(--accent);
+}
+
+.suggestion-excerpt {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-3);
+    line-height: 1.5;
+}
+
+.suggestion-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-sm);
+    color: var(--text-tertiary);
+}
+
+@media (max-width: 768px) {
+    .error-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .error-btn {
+        min-width: 200px;
+    }
+    
+    .suggestions-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>

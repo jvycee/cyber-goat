@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}" class="{{body_class}}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{meta_title}}</title>
+    <meta name="description" content="{{meta_description}}">
+    <link rel="canonical" href="{{url absolute="true"}}">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    {{!-- Theme color for mobile browsers --}}
+    <meta name="theme-color" content="#0a0a0f">
+    <meta name="msapplication-navbutton-color" content="#0a0a0f">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    {{!-- Open Graph --}}
+    <meta property="og:site_name" content="{{@site.title}}">
+    <meta property="og:type" content="{{#is "post"}}article{{else}}website{{/is}}">
+    <meta property="og:title" content="{{meta_title}}">
+    <meta property="og:description" content="{{meta_description}}">
+    <meta property="og:url" content="{{url absolute="true"}}">
+    {{#if feature_image}}
+    <meta property="og:image" content="{{img_url feature_image size="l"}}">
+    {{else}}
+    <meta property="og:image" content="{{asset "images/cyberpunk-og.png"}}">
+    {{/if}}
+    
+    {{!-- Twitter Card --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{meta_title}}">
+    <meta name="twitter:description" content="{{meta_description}}">
+    <meta name="twitter:url" content="{{url absolute="true"}}">
+    {{#if feature_image}}
+    <meta name="twitter:image" content="{{img_url feature_image size="l"}}">
+    {{else}}
+    <meta name="twitter:image" content="{{asset "images/cyberpunk-og.png"}}">
+    {{/if}}
+    
+    {{!-- Structured Data --}}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "{{#is "post"}}Article{{else}}WebSite{{/is}}",
+        "publisher": {
+            "@type": "Organization",
+            "name": "{{@site.title}}",
+            "url": "{{@site.url}}",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{img_url @site.cover_image size="s"}}"
+            }
+        },
+        "url": "{{url absolute="true"}}",
+        {{#is "post"}}
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{url absolute="true"}}"
+        },
+        "headline": "{{title}}",
+        "description": "{{meta_description}}",
+        {{#if feature_image}}
+        "image": "{{img_url feature_image size="l"}}",
+        {{/if}}
+        "datePublished": "{{date format="YYYY-MM-DD"}}",
+        "dateModified": "{{updated_at format="YYYY-MM-DD"}}",
+        "author": {
+            "@type": "Person",
+            "name": "{{primary_author.name}}",
+            "url": "{{primary_author.url}}"
+        },
+        {{else}}
+        "name": "{{@site.title}}",
+        "description": "{{@site.description}}",
+        {{/is}}
+        "keywords": "{{meta_keywords}}"
+    }
+    </script>
+    
+    {{!-- Preload critical fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    {{!-- CSS --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/screen.css"}}">
+    
+    {{!-- Ghost head --}}
+    {{ghost_head}}
+</head>
+<body class="{{body_class}} theme-cyberpunk">
+    <div class="cyberpunk-grid"></div>
+    
+    <div class="app-container">
+        {{!-- Header --}}
+        {{> header}}
+        
+        {{!-- Main Content --}}
+        <main class="main-content" role="main">
+            {{{body}}}
+        </main>
+        
+        {{!-- Footer --}}
+        {{> footer}}
+    </div>
+    
+    {{!-- Theme Switcher --}}
+    {{> theme-switcher}}
+    
+    {{!-- JavaScript --}}
+    <script src="{{asset "js/theme-switcher.js"}}"></script>
+    <script src="{{asset "js/neon-effects.js"}}"></script>
+    <script src="{{asset "js/main.js"}}"></script>
+    
+    {{!-- Ghost foot --}}
+    {{ghost_foot}}
+</body>
+</html>

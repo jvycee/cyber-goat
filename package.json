@@ -1,0 +1,162 @@
+{
+  "name": "cyberpunk-ghost-theme",
+  "description": "A futuristic cyberpunk Ghost theme with 5 color modes, neon effects, and glass morphism. Perfect for tech blogs, gaming sites, and futuristic brands.",
+  "version": "1.0.0",
+  "private": false,
+  "license": "MIT",
+  "author": {
+    "name": "Jaycee Lewis",
+    "email": "jvycee@pm.me",
+    "url": "https://github.com/jayceelewis"
+  },
+  "keywords": [
+    "ghost",
+    "theme",
+    "cyberpunk",
+    "neon",
+    "dark",
+    "futuristic",
+    "tech",
+    "gaming",
+    "glass-morphism",
+    "responsive",
+    "accessible"
+  ],
+  "homepage": "https://github.com/jayceelewis/cyberpunk-ghost-theme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jayceelewis/cyberpunk-ghost-theme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jayceelewis/cyberpunk-ghost-theme/issues"
+  },
+  "engines": {
+    "ghost": ">=5.0.0",
+    "ghost-api": "v5"
+  },
+  "config": {
+    "posts_per_page": 10,
+    "image_sizes": {
+      "xs": 300,
+      "s": 600,
+      "m": 1200,
+      "l": 2000,
+      "xl": 2000
+    },
+    "card_assets": true,
+    "custom": {
+      "theme_switcher": {
+        "type": "boolean",
+        "default": true,
+        "group": "theme"
+      },
+      "default_theme": {
+        "type": "select",
+        "options": ["cyberpunk", "neon", "matrix", "vaporwave", "synthwave"],
+        "default": "cyberpunk",
+        "group": "theme"
+      },
+      "enable_animations": {
+        "type": "boolean",
+        "default": true,
+        "group": "effects"
+      },
+      "neon_intensity": {
+        "type": "select",
+        "options": ["subtle", "normal", "intense"],
+        "default": "normal",
+        "group": "effects"
+      },
+      "show_reading_time": {
+        "type": "boolean",
+        "default": true,
+        "group": "post"
+      },
+      "show_author_info": {
+        "type": "boolean",
+        "default": true,
+        "group": "post"
+      },
+      "enable_code_syntax": {
+        "type": "boolean",
+        "default": true,
+        "group": "post"
+      },
+      "social_sharing": {
+        "type": "boolean",
+        "default": true,
+        "group": "social"
+      },
+      "header_style": {
+        "type": "select",
+        "options": ["minimal", "standard", "extended"],
+        "default": "standard",
+        "group": "layout"
+      },
+      "footer_style": {
+        "type": "select",
+        "options": ["minimal", "standard"],
+        "default": "standard",
+        "group": "layout"
+      }
+    }
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.1",
+    "esbuild": "^0.19.8",
+    "postcss": "^8.4.32",
+    "postcss-cli": "^10.1.0",
+    "postcss-import": "^15.1.0",
+    "watch": "^0.13.0"
+  },
+  "scripts": {
+    "dev": "npm run css:watch & npm run js:watch",
+    "build": "npm run css:build && npm run js:build",
+    "css:build": "postcss assets/css/screen.css -o assets/built/screen.css --env production",
+    "css:watch": "postcss assets/css/screen.css -o assets/built/screen.css --watch",
+    "js:build": "esbuild assets/js/main.js --bundle --minify --target=es2018 --outfile=assets/built/main.js",
+    "js:watch": "esbuild assets/js/main.js --bundle --watch --target=es2018 --outfile=assets/built/main.js",
+    "zip": "npm run build && cd .. && zip -r cyberpunk-ghost-theme.zip cyberpunk-ghost-theme/ -x '*/node_modules/*' '*/.git/*' '*/src/*' '*/.DS_Store'",
+    "test": "echo 'Theme validation would go here'",
+    "validate": "ghost-theme-validator .",
+    "clean": "rm -rf assets/built node_modules"
+  },
+  "ghost": {
+    "custom": {
+      "theme_name": "Cyberpunk",
+      "theme_description": "A futuristic cyberpunk theme with 5 distinct color modes",
+      "theme_version": "1.0.0",
+      "ghost_api": "v5",
+      "supported_features": [
+        "members",
+        "newsletter",
+        "search",
+        "comments",
+        "tiers",
+        "custom_settings"
+      ]
+    }
+  },
+  "marketplace": {
+    "price": 99,
+    "currency": "USD",
+    "category": "premium",
+    "tags": ["cyberpunk", "dark", "tech", "gaming", "neon", "futuristic"],
+    "demo_url": "https://cyberpunk-demo.ghost.io",
+    "preview_images": [
+      "preview-cyberpunk.jpg",
+      "preview-neon.jpg", 
+      "preview-matrix.jpg",
+      "preview-vaporwave.jpg",
+      "preview-synthwave.jpg"
+    ],
+    "compatibility": {
+      "ghost_min": "5.0.0",
+      "browsers": ["Chrome 90+", "Firefox 88+", "Safari 14+", "Edge 90+"],
+      "mobile": true,
+      "tablet": true,
+      "accessibility": "WCAG 2.1 AA"
+    }
+  }
+}

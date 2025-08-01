@@ -1,0 +1,547 @@
+/*
+ * Cyberpunk Ghost Theme - Main Stylesheet
+ * A premium cyberpunk-themed Ghost template with 5 color modes
+ * Version: 1.0.0
+ */
+
+/* Import statements for modular CSS architecture */
+@import "color-schemes.css";
+@import "components.css";
+@import "cyberpunk-effects.css";
+
+/* =====================================================
+   BASE STYLES & RESET
+   ===================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-main);
+  font-size: var(--font-base);
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Theme transition effect */
+.theme-transition * {
+  transition: background-color var(--duration-normal) var(--ease-out),
+              border-color var(--duration-normal) var(--ease-out),
+              color var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out) !important;
+}
+
+/* =====================================================
+   TYPOGRAPHY
+   ===================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-accent);
+  margin-bottom: var(--space-4);
+}
+
+h1 { font-size: var(--font-3xl); }
+h2 { font-size: var(--font-2xl); }
+h3 { font-size: var(--font-xl); }
+h4 { font-size: var(--font-lg); }
+h5 { font-size: var(--font-base); }
+h6 { font-size: var(--font-sm); }
+
+p {
+  margin-bottom: var(--space-4);
+  color: var(--text-primary);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+a:hover {
+  color: var(--accent-secondary);
+  text-shadow: 0 0 5px var(--accent);
+}
+
+strong, b {
+  font-weight: 600;
+  color: var(--text-accent);
+}
+
+em, i {
+  font-style: italic;
+}
+
+code {
+  font-family: var(--font-main);
+  font-size: 0.9em;
+  background: var(--bg-tertiary);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  color: var(--neon-cyan);
+}
+
+pre {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--space-4);
+  overflow-x: auto;
+  margin-bottom: var(--space-4);
+  position: relative;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--text-primary);
+}
+
+blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: var(--space-4);
+  margin: var(--space-6) 0;
+  font-style: italic;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  padding: var(--space-4);
+  border-radius: 0 8px 8px 0;
+}
+
+/* =====================================================
+   LAYOUT STRUCTURE
+   ===================================================== */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.main-content {
+  flex: 1;
+  padding: var(--space-6) var(--space-4);
+  max-width: var(--container-max);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* =====================================================
+   CYBERPUNK GRID BACKGROUND
+   ===================================================== */
+
+.cyberpunk-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.3;
+  animation: grid-pulse 4s ease-in-out infinite alternate;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* =====================================================
+   HOMEPAGE STYLES
+   ===================================================== */
+
+.homepage-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-section {
+  padding: var(--space-12) var(--space-6);
+  text-align: center;
+  position: relative;
+  margin-bottom: var(--space-12);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin-bottom: var(--space-4);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hero-description {
+  font-size: var(--font-lg);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto var(--space-6);
+}
+
+.hero-image {
+  margin-top: var(--space-8);
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border-glow);
+  box-shadow: var(--shadow-card);
+}
+
+.hero-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.neon-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.5;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.3;
+}
+
+/* =====================================================
+   POSTS SECTION
+   ===================================================== */
+
+.posts-section {
+  margin-bottom: var(--space-12);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.section-title {
+  font-size: var(--font-2xl);
+  color: var(--text-accent);
+  margin-bottom: 0;
+}
+
+.section-decoration {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.neon-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.neon-dot.featured {
+  background: var(--accent-secondary);
+  box-shadow: 0 0 10px var(--accent-secondary);
+}
+
+.neon-line-small {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+.neon-line-small.featured {
+  background: linear-gradient(90deg, var(--accent-secondary), transparent);
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.no-posts {
+  text-align: center;
+  padding: var(--space-12) var(--space-6);
+  border-radius: 16px;
+}
+
+.no-posts-icon {
+  font-size: 4rem;
+  margin-bottom: var(--space-4);
+  color: var(--accent);
+}
+
+.no-posts-title {
+  color: var(--text-accent);
+  margin-bottom: var(--space-4);
+}
+
+.no-posts-text {
+  color: var(--text-secondary);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* =====================================================
+   FEATURED SECTION
+   ===================================================== */
+
+.featured-section {
+  margin-bottom: var(--space-12);
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--space-6);
+}
+
+/* =====================================================
+   NEWSLETTER SECTION
+   ===================================================== */
+
+.newsletter-section {
+  margin-bottom: var(--space-12);
+}
+
+.newsletter-container {
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter-title {
+  font-size: var(--font-2xl);
+  margin-bottom: var(--space-4);
+}
+
+.newsletter-description {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-6);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.newsletter-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.newsletter-input-group {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.newsletter-input {
+  flex: 1;
+}
+
+.newsletter-feedback {
+  font-size: var(--font-sm);
+}
+
+.newsletter-success {
+  color: var(--success);
+  display: none;
+}
+
+.newsletter-error {
+  color: var(--error);
+  display: none;
+}
+
+.newsletter-decoration {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.neon-circuit {
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 20%, var(--accent) 2px, transparent 2px),
+    radial-gradient(circle at 80% 80%, var(--accent-secondary) 2px, transparent 2px);
+  background-size: 30px 30px;
+}
+
+/* =====================================================
+   PAGINATION
+   ===================================================== */
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-8);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  border-radius: 12px;
+}
+
+.pagination-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.pagination-btn:hover {
+  background: var(--bg-quaternary);
+  border-color: var(--accent);
+  color: var(--text-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.2);
+}
+
+.pagination-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-main);
+  font-weight: 500;
+}
+
+.pagination-current {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.pagination-separator {
+  color: var(--text-tertiary);
+}
+
+.pagination-total {
+  color: var(--text-secondary);
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .main-content {
+    padding: var(--space-4) var(--space-3);
+  }
+  
+  .hero-section {
+    padding: var(--space-8) var(--space-4);
+  }
+  
+  .posts-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  
+  .featured-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  
+  .newsletter-input-group {
+    flex-direction: column;
+  }
+  
+  .newsletter-input {
+    margin-bottom: var(--space-2);
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .main-content {
+    padding: var(--space-3) var(--space-2);
+  }
+  
+  .hero-section {
+    padding: var(--space-6) var(--space-3);
+  }
+  
+  .newsletter-container {
+    padding: var(--space-6) var(--space-4);
+  }
+  
+  .pagination {
+    padding: var(--space-3) var(--space-4);
+  }
+  
+  .pagination-btn {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-sm);
+  }
+}

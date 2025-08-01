@@ -1,0 +1,84 @@
+{{!-- Post card partial for the cyberpunk Ghost theme --}}
+
+<article class="post-card {{post_class}} {{#if featured}}post-card-featured{{/if}} glass">
+    {{!-- Featured Badge --}}
+    {{#if featured}}
+    <div class="post-card-featured-badge">
+        <span class="featured-text">Featured</span>
+        <span class="featured-icon">⭐</span>
+    </div>
+    {{/if}}
+    
+    {{!-- Post Image --}}
+    {{#if feature_image}}
+    <div class="post-card-image">
+        <a href="{{url}}" class="post-card-image-link" aria-label="{{title}}">
+            <img src="{{img_url feature_image size="m"}}" 
+                 alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" 
+                 class="post-card-img cyberpunk-image"
+                 loading="lazy">
+            <div class="post-card-image-overlay">
+                <span class="read-more-text">Read More</span>
+            </div>
+        </a>
+    </div>
+    {{/if}}
+    
+    {{!-- Post Content --}}
+    <div class="post-card-content">
+        {{!-- Post Tags --}}
+        {{#if primary_tag}}
+        <div class="post-card-tags">
+            <a href="{{primary_tag.url}}" class="post-card-tag">
+                <span class="tag-hash">#</span>{{primary_tag.name}}
+            </a>
+        </div>
+        {{/if}}
+        
+        {{!-- Post Title --}}
+        <h2 class="post-card-title">
+            <a href="{{url}}" class="post-card-title-link">{{title}}</a>
+        </h2>
+        
+        {{!-- Post Excerpt --}}
+        {{#if excerpt}}
+        <p class="post-card-excerpt">{{excerpt words="25"}}</p>
+        {{/if}}
+        
+        {{!-- Post Meta --}}
+        <div class="post-card-meta">
+            <div class="post-card-author">
+                {{#if primary_author.profile_image}}
+                <img src="{{img_url primary_author.profile_image size="xs"}}" 
+                     alt="{{primary_author.name}}" 
+                     class="author-avatar author-avatar-small">
+                {{else}}
+                <div class="author-avatar author-avatar-small author-avatar-default">
+                    <span class="author-initial">{{primary_author.name.[0]}}</span>
+                </div>
+                {{/if}}
+                <span class="author-name">{{primary_author.name}}</span>
+            </div>
+            
+            <div class="post-card-date-reading">
+                <time class="post-card-date" datetime="{{date format="YYYY-MM-DD"}}">
+                    {{date format="MMM DD"}}
+                </time>
+                <span class="post-card-separator">•</span>
+                <span class="post-card-reading-time">{{reading_time}} min</span>
+            </div>
+        </div>
+        
+        {{!-- Read More Button --}}
+        <div class="post-card-actions">
+            <a href="{{url}}" class="post-card-read-more btn btn-ghost btn-sm">
+                <span class="btn-text">Read More</span>
+                <span class="btn-icon">→</span>
+            </a>
+        </div>
+    </div>
+    
+    {{!-- Hover Effects --}}
+    <div class="post-card-glow"></div>
+    <div class="post-card-border-flow"></div>
+</article>

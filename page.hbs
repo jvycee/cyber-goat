@@ -1,0 +1,146 @@
+{{!< default}}
+
+{{!-- Static page template for the cyberpunk Ghost theme --}}
+
+<article class="page-container {{post_class}}">
+    {{!-- Page Header --}}
+    <header class="page-header">
+        {{#if feature_image}}
+        <div class="page-feature-image">
+            <img src="{{img_url feature_image size="xl"}}" alt="{{title}}" class="cyberpunk-image">
+            <div class="feature-image-overlay"></div>
+        </div>
+        {{/if}}
+        
+        <div class="page-header-content glass">
+            <h1 class="page-title text-glow">{{title}}</h1>
+            
+            {{#if excerpt}}
+            <p class="page-excerpt">{{excerpt}}</p>
+            {{/if}}
+            
+            <div class="page-meta">
+                <time class="page-date" datetime="{{date format="YYYY-MM-DD"}}">
+                    Last updated {{date format="MMM DD, YYYY"}}
+                </time>
+                {{#if reading_time}}
+                <span class="page-reading-time">{{reading_time}} min read</span>
+                {{/if}}
+            </div>
+        </div>
+    </header>
+
+    {{!-- Page Content --}}
+    <section class="page-content">
+        <div class="page-content-wrapper glass">
+            {{content}}
+        </div>
+    </section>
+
+    {{!-- Page Footer --}}
+    <footer class="page-footer">
+        {{!-- Tags (if any) --}}
+        {{#if tags}}
+        <div class="page-tags-section glass">
+            <h4 class="tags-title">Topics</h4>
+            <div class="page-tags-list">
+                {{#foreach tags}}
+                <a href="{{url}}" class="page-tag btn btn-ghost btn-sm">
+                    <span class="tag-hash">#</span>{{name}}
+                </a>
+                {{/foreach}}
+            </div>
+        </div>
+        {{/if}}
+
+        {{!-- Contact Information (for contact/about pages) --}}
+        {{#if slug "contact"}}
+        <div class="contact-info glass">
+            <h3 class="contact-title">Get in Touch</h3>
+            <div class="contact-methods">
+                {{#if @site.twitter}}
+                <a href="{{twitter_url @site.twitter}}" class="contact-method" target="_blank" rel="noopener">
+                    <span class="contact-icon">🐦</span>
+                    <span class="contact-label">Twitter</span>
+                </a>
+                {{/if}}
+                
+                {{#if @site.facebook}}
+                <a href="{{facebook_url @site.facebook}}" class="contact-method" target="_blank" rel="noopener">
+                    <span class="contact-icon">📘</span>
+                    <span class="contact-label">Facebook</span>
+                </a>
+                {{/if}}
+                
+                <a href="mailto:{{@site.email}}" class="contact-method">
+                    <span class="contact-icon">📧</span>
+                    <span class="contact-label">Email</span>
+                </a>
+            </div>
+        </div>
+        {{/if}}
+
+        {{!-- Newsletter Signup (if enabled and not already subscribed) --}}
+        {{#if @labs.members}}
+        {{#unless @member}}
+        <div class="page-newsletter glass">
+            <h3 class="newsletter-title">Stay Connected</h3>
+            <p class="newsletter-description">Get updates when new content is published.</p>
+            
+            <form class="newsletter-form" data-members-form="subscribe">
+                <div class="newsletter-input-group">
+                    <input 
+                        type="email" 
+                        class="newsletter-input input" 
+                        placeholder="Your email address"
+                        data-members-email
+                        required
+                        aria-label="Email address"
+                    >
+                    <button type="submit" class="newsletter-btn btn btn-primary">
+                        <span class="btn-text">Subscribe</span>
+                        <span class="btn-loader">⚡</span>
+                    </button>
+                </div>
+                <div class="newsletter-feedback">
+                    <p class="newsletter-success" data-members-success>
+                        Welcome! Check your email to confirm your subscription.
+                    </p>
+                    <p class="newsletter-error" data-members-error>
+                        Something went wrong. Please try again.
+                    </p>
+                </div>
+            </form>
+        </div>
+        {{/unless}}
+        {{/if}}
+
+        {{!-- Back to Posts --}}
+        <div class="page-navigation">
+            <a href="{{@site.url}}" class="back-to-home btn btn-ghost">
+                <span class="btn-icon">←</span>
+                <span class="btn-text">Back to Posts</span>
+            </a>
+        </div>
+    </footer>
+</article>
+
+{{!-- Table of Contents for long pages --}}
+{{#if content}}
+<aside class="toc-container" id="tableOfContents">
+    <div class="toc glass">
+        <h4 class="toc-title">Contents</h4>
+        <nav class="toc-nav" id="tocNav">
+            <!-- Table of contents will be generated by JavaScript -->
+        </nav>
+        <button class="toc-toggle" id="tocToggle" aria-label="Toggle table of contents">
+            <span class="toc-toggle-icon">📄</span>
+        </button>
+    </div>
+</aside>
+{{/if}}
+
+{{!-- Reading Progress Bar --}}
+<div class="reading-progress">
+    <div class="reading-progress-bar" id="readingProgressBar"></div>
+</div>

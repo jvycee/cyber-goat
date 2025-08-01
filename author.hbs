@@ -1,0 +1,114 @@
+{{!< default}}
+
+{{!-- Author template for the cyberpunk Ghost theme --}}
+
+<div class="author-container">
+    {{#author}}
+    <header class="author-header glass">
+        <div class="author-profile">
+            {{#if profile_image}}
+            <div class="author-avatar-large">
+                <img src="{{img_url profile_image size="l"}}" alt="{{name}}" class="cyberpunk-image">
+            </div>
+            {{else}}
+            <div class="author-avatar-large author-avatar-default">
+                <span class="author-initial-large">{{name.[0]}}</span>
+            </div>
+            {{/if}}
+            
+            <div class="author-info">
+                <h1 class="author-name text-glow">{{name}}</h1>
+                
+                {{#if bio}}
+                <p class="author-bio">{{bio}}</p>
+                {{/if}}
+                
+                <div class="author-meta">
+                    <div class="author-stats">
+                        <div class="author-stat">
+                            <span class="stat-number">{{count_posts}}</span>
+                            <span class="stat-label">Posts</span>
+                        </div>
+                    </div>
+                    
+                    <div class="author-links">
+                        {{#if website}}
+                        <a href="{{website}}" class="author-link btn btn-ghost btn-sm" target="_blank" rel="noopener">
+                            <span class="link-icon">🌐</span>
+                            <span class="link-text">Website</span>
+                        </a>
+                        {{/if}}
+                        
+                        {{#if twitter}}
+                        <a href="{{twitter_url twitter}}" class="author-link btn btn-ghost btn-sm" target="_blank" rel="noopener">
+                            <span class="link-icon">🐦</span>
+                            <span class="link-text">Twitter</span>
+                        </a>
+                        {{/if}}
+                        
+                        {{#if facebook}}
+                        <a href="{{facebook_url facebook}}" class="author-link btn btn-ghost btn-sm" target="_blank" rel="noopener">
+                            <span class="link-icon">📘</span>
+                            <span class="link-text">Facebook</span>
+                        </a>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    {{/author}}
+
+    {{!-- Author Posts --}}
+    <section class="author-posts">
+        <div class="section-header">
+            <h2 class="section-title">Posts by {{author.name}}</h2>
+            <div class="section-decoration">
+                <span class="neon-dot"></span>
+                <span class="neon-line-small"></span>
+            </div>
+        </div>
+
+        {{#if posts}}
+        <div class="posts-grid">
+            {{#foreach posts}}
+                {{> post-card}}
+            {{/foreach}}
+        </div>
+
+        {{!-- Pagination --}}
+        {{#if pagination}}
+        <nav class="pagination-container">
+            <div class="pagination glass">
+                {{#if pagination.prev}}
+                <a href="{{page_url pagination.prev}}" class="pagination-btn pagination-prev">
+                    <span class="pagination-icon">←</span>
+                    <span class="pagination-text">Previous</span>
+                </a>
+                {{/if}}
+
+                <div class="pagination-info">
+                    <span class="pagination-current">{{pagination.page}}</span>
+                    <span class="pagination-separator">/</span>
+                    <span class="pagination-total">{{pagination.pages}}</span>
+                </div>
+
+                {{#if pagination.next}}
+                <a href="{{page_url pagination.next}}" class="pagination-btn pagination-next">
+                    <span class="pagination-text">Next</span>
+                    <span class="pagination-icon">→</span>
+                </a>
+                {{/if}}
+            </div>
+        </nav>
+        {{/if}}
+
+        {{else}}
+        <div class="no-posts glass">
+            <div class="no-posts-icon">✍️</div>
+            <h3 class="no-posts-title">No posts yet</h3>
+            <p class="no-posts-text">{{author.name}} hasn't published any posts yet. Check back soon!</p>
+        </div>
+        {{/if}}
+    </section>
+</div>

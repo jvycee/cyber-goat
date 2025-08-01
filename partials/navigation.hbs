@@ -1,0 +1,127 @@
+{{!-- Navigation partial for the cyberpunk Ghost theme --}}
+
+<div class="navigation-container {{#if mobile}}mobile-nav{{else}}desktop-nav{{/if}}">
+    {{#if @site.navigation}}
+    <ul class="nav-list" role="menubar">
+        {{#foreach @site.navigation}}
+        <li class="nav-item" role="none">
+            <a href="{{url absolute="true"}}" 
+               class="nav-link {{#if current}}nav-current{{/if}}" 
+               role="menuitem"
+               {{#if slug}}data-nav="{{slug}}"{{/if}}>
+                <span class="nav-text">{{label}}</span>
+                {{#if current}}
+                <span class="nav-indicator"></span>
+                {{/if}}
+            </a>
+        </li>
+        {{/foreach}}
+    </ul>
+    {{else}}
+    {{!-- Default navigation when no custom navigation is set --}}
+    <ul class="nav-list" role="menubar">
+        <li class="nav-item" role="none">
+            <a href="{{@site.url}}" 
+               class="nav-link {{#is "home"}}nav-current{{/is}}" 
+               role="menuitem"
+               data-nav="home">
+                <span class="nav-text">Home</span>
+                {{#is "home"}}
+                <span class="nav-indicator"></span>
+                {{/is}}
+            </a>
+        </li>
+        
+        {{!-- Get first few tags as navigation items --}}
+        {{#get "tags" limit="4" order="count desc"}}
+        {{#if tags}}
+        {{#foreach tags}}
+        <li class="nav-item" role="none">
+            <a href="{{url}}" 
+               class="nav-link {{#has tag=slug}}nav-current{{/has}}" 
+               role="menuitem"
+               data-nav="{{slug}}">
+                <span class="nav-text">{{name}}</span>
+                {{#has tag=slug}}
+                <span class="nav-indicator"></span>
+                {{/has}}
+            </a>
+        </li>
+        {{/foreach}}
+        {{/if}}
+        {{/get}}
+        
+        {{!-- About page if it exists --}}
+        {{#get "pages" filter="slug:about" limit="1"}}
+        {{#if pages}}
+        {{#foreach pages}}
+        <li class="nav-item" role="none">
+            <a href="{{url}}" 
+               class="nav-link {{#is "page"}}{{#if slug "about"}}nav-current{{/if}}{{/is}}" 
+               role="menuitem"
+               data-nav="about">
+                <span class="nav-text">About</span>
+                {{#is "page"}}{{#if slug "about"}}
+                <span class="nav-indicator"></span>
+                {{/if}}{{/is}}
+            </a>
+        </li>
+        {{/foreach}}
+        {{/if}}
+        {{/get}}
+        
+        {{!-- Contact page if it exists --}}
+        {{#get "pages" filter="slug:contact" limit="1"}}
+        {{#if pages}}
+        {{#foreach pages}}
+        <li class="nav-item" role="none">
+            <a href="{{url}}" 
+               class="nav-link {{#is "page"}}{{#if slug "contact"}}nav-current{{/if}}{{/is}}" 
+               role="menuitem"
+               data-nav="contact">
+                <span class="nav-text">Contact</span>
+                {{#is "page"}}{{#if slug "contact"}}
+                <span class="nav-indicator"></span>
+                {{/if}}{{/is}}
+            </a>
+        </li>
+        {{/foreach}}
+        {{/if}}
+        {{/get}}
+    </ul>
+    {{/if}}
+    
+    {{!-- Social Links (for mobile navigation) --}}
+    {{#if mobile}}
+    <div class="mobile-social-links">
+        {{#if @site.twitter}}
+        <a href="{{twitter_url @site.twitter}}" 
+           class="social-link" 
+           target="_blank" 
+           rel="noopener"
+           aria-label="Twitter">
+            <span class="social-icon">🐦</span>
+        </a>
+        {{/if}}
+        
+        {{#if @site.facebook}}
+        <a href="{{facebook_url @site.facebook}}" 
+           class="social-link" 
+           target="_blank" 
+           rel="noopener"
+           aria-label="Facebook">
+            <span class="social-icon">📘</span>
+        </a>
+        {{/if}}
+        
+        {{!-- RSS Feed --}}
+        <a href="{{@site.url}}/rss/" 
+           class="social-link" 
+           target="_blank" 
+           rel="noopener"
+           aria-label="RSS Feed">
+            <span class="social-icon">📡</span>
+        </a>
+    </div>
+    {{/if}}
+</div>

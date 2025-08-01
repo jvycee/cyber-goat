@@ -1,0 +1,143 @@
+{{!-- Theme switcher partial for the cyberpunk Ghost theme --}}
+
+<div class="theme-switcher" id="themeSwitcher">
+    <div class="theme-switcher-container glass">
+        <div class="theme-switcher-header">
+            <span class="theme-switcher-title">Color Mode</span>
+            <span class="theme-switcher-icon">🎨</span>
+        </div>
+        
+        <div class="theme-options">
+            <button class="theme-btn theme-btn-cyberpunk active" 
+                    data-theme="cyberpunk" 
+                    aria-label="Cyberpunk theme"
+                    title="Cyberpunk - Classic blue-cyan aesthetic">
+                <div class="theme-btn-color" style="background: linear-gradient(135deg, #00ffff, #ff0080);"></div>
+                <span class="theme-btn-name">Cyberpunk</span>
+            </button>
+            
+            <button class="theme-btn theme-btn-neon" 
+                    data-theme="neon" 
+                    aria-label="Neon theme"
+                    title="Neon - Purple-pink dominant theme">
+                <div class="theme-btn-color" style="background: linear-gradient(135deg, #ff0080, #d946ef);"></div>
+                <span class="theme-btn-name">Neon</span>
+            </button>
+            
+            <button class="theme-btn theme-btn-matrix" 
+                    data-theme="matrix" 
+                    aria-label="Matrix theme"
+                    title="Matrix - Green monochrome hacker aesthetic">
+                <div class="theme-btn-color" style="background: linear-gradient(135deg, #00ff41, #00ff88);"></div>
+                <span class="theme-btn-name">Matrix</span>
+            </button>
+            
+            <button class="theme-btn theme-btn-vaporwave" 
+                    data-theme="vaporwave" 
+                    aria-label="Vaporwave theme"
+                    title="Vaporwave - Retro-futuristic purple-pink">
+                <div class="theme-btn-color" style="background: linear-gradient(135deg, #ff006e, #bf00ff);"></div>
+                <span class="theme-btn-name">Vaporwave</span>
+            </button>
+            
+            <button class="theme-btn theme-btn-synthwave" 
+                    data-theme="synthwave" 
+                    aria-label="Synthwave theme"
+                    title="Synthwave - Orange-gold with blue accents">
+                <div class="theme-btn-color" style="background: linear-gradient(135deg, #ff9500, #00bfff);"></div>
+                <span class="theme-btn-name">Synthwave</span>
+            </button>
+        </div>
+        
+        <div class="theme-switcher-footer">
+            <button class="theme-toggle-btn" 
+                    id="themeToggle" 
+                    aria-label="Toggle theme switcher"
+                    title="Toggle color mode panel">
+                <span class="toggle-icon">⚡</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+{{!-- Theme Persistence Script --}}
+<script>
+(function() {
+    // Theme persistence and initialization
+    const THEME_KEY = 'cyberpunk-theme';
+    const DEFAULT_THEME = 'cyberpunk';
+    
+    // Get saved theme or use default
+    const savedTheme = localStorage.getItem(THEME_KEY) || DEFAULT_THEME;
+    
+    // Apply theme immediately to prevent flash
+    document.body.className = document.body.className.replace(/theme-\w+/g, '') + ' theme-' + savedTheme;
+    
+    // Set theme variables immediately
+    const themes = {
+        cyberpunk: {
+            '--bg-primary': '#0a0a0f',
+            '--bg-secondary': '#111118',
+            '--bg-tertiary': '#1a1a24',
+            '--bg-quaternary': '#242437',
+            '--neon-cyan': '#00ffff',
+            '--neon-pink': '#ff0080',
+            '--accent': '#00ffff',
+            '--accent-secondary': '#ff0080'
+        },
+        neon: {
+            '--bg-primary': '#0f0515',
+            '--bg-secondary': '#1a0a1f',
+            '--bg-tertiary': '#251230',
+            '--bg-quaternary': '#301a40',
+            '--neon-cyan': '#00d9ff',
+            '--neon-pink': '#ff0080',
+            '--neon-purple': '#d946ef',
+            '--accent': '#ff0080',
+            '--accent-secondary': '#d946ef'
+        },
+        matrix: {
+            '--bg-primary': '#000000',
+            '--bg-secondary': '#001100',
+            '--bg-tertiary': '#002200',
+            '--bg-quaternary': '#003300',
+            '--neon-cyan': '#00ff88',
+            '--neon-green': '#00ff41',
+            '--text-primary': '#00ff41',
+            '--accent': '#00ff41',
+            '--accent-secondary': '#00ff88'
+        },
+        vaporwave: {
+            '--bg-primary': '#120458',
+            '--bg-secondary': '#1e0a78',
+            '--bg-tertiary': '#2a1098',
+            '--bg-quaternary': '#3616b8',
+            '--neon-cyan': '#00d4ff',
+            '--neon-pink': '#ff006e',
+            '--neon-purple': '#bf00ff',
+            '--accent': '#ff006e',
+            '--accent-secondary': '#bf00ff'
+        },
+        synthwave: {
+            '--bg-primary': '#0d1421',
+            '--bg-secondary': '#162030',
+            '--bg-tertiary': '#1f2c3f',
+            '--bg-quaternary': '#28384e',
+            '--neon-cyan': '#00bfff',
+            '--neon-orange': '#ff9500',
+            '--text-primary': '#ffd700',
+            '--accent': '#ff9500',
+            '--accent-secondary': '#00bfff'
+        }
+    };
+    
+    const root = document.documentElement;
+    const themeVars = themes[savedTheme];
+    
+    if (themeVars) {
+        Object.entries(themeVars).forEach(([prop, value]) => {
+            root.style.setProperty(prop, value);
+        });
+    }
+})();
+</script>

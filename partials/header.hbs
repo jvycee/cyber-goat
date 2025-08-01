@@ -1,0 +1,164 @@
+{{!-- Header partial for the cyberpunk Ghost theme --}}
+
+<header class="site-header glass" role="banner">
+    <div class="header-container">
+        {{!-- Logo/Site Title --}}
+        <div class="site-branding">
+            {{#if @site.logo}}
+            <a href="{{@site.url}}" class="site-logo">
+                <img src="{{img_url @site.logo size="s"}}" alt="{{@site.title}}" class="logo-image">
+            </a>
+            {{else}}
+            <a href="{{@site.url}}" class="site-title text-glow">
+                <span class="site-title-text">{{@site.title}}</span>
+                <span class="site-title-decoration">⚡</span>
+            </a>
+            {{/if}}
+        </div>
+
+        {{!-- Navigation --}}
+        <nav class="site-navigation" role="navigation" aria-label="Main navigation">
+            {{> navigation}}
+        </nav>
+
+        {{!-- Search Toggle --}}
+        <div class="header-actions">
+            <button class="search-toggle btn btn-ghost" id="searchToggle" aria-label="Toggle search">
+                <span class="search-icon">🔍</span>
+            </button>
+            
+            {{!-- Member Actions --}}
+            {{#if @labs.members}}
+            <div class="member-actions">
+                {{#if @member}}
+                <div class="member-menu">
+                    <button class="member-toggle btn btn-ghost" id="memberToggle" aria-label="Member menu">
+                        {{#if @member.avatar}}
+                        <img src="{{@member.avatar}}" alt="{{@member.name}}" class="member-avatar">
+                        {{else}}
+                        <div class="member-avatar member-avatar-default">
+                            <span class="member-initial">{{@member.name.[0]}}</span>
+                        </div>
+                        {{/if}}
+                    </button>
+                    <div class="member-dropdown glass" id="memberDropdown">
+                        <div class="member-info">
+                            <span class="member-name">{{@member.name}}</span>
+                            <span class="member-email">{{@member.email}}</span>
+                        </div>
+                        <div class="member-links">
+                            <a href="#/portal/account" class="member-link" data-portal="account">
+                                Account Settings
+                            </a>
+                            <button class="member-link member-signout" data-members-signout>
+                                Sign Out
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {{else}}
+                <div class="auth-actions">
+                    <button class="auth-btn btn btn-ghost" data-portal="signin">
+                        Sign In
+                    </button>
+                    <button class="auth-btn btn btn-primary" data-portal="signup">
+                        Subscribe
+                    </button>
+                </div>
+                {{/if}}
+            </div>
+            {{/if}}
+
+            {{!-- Mobile Menu Toggle --}}
+            <button class="mobile-menu-toggle btn btn-ghost" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                <span class="hamburger">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </span>
+            </button>
+        </div>
+    </div>
+
+    {{!-- Mobile Navigation --}}
+    <div class="mobile-navigation glass" id="mobileNavigation">
+        <div class="mobile-nav-content">
+            {{> navigation mobile=true}}
+            
+            {{!-- Mobile Member Actions --}}
+            {{#if @labs.members}}
+            <div class="mobile-member-actions">
+                {{#if @member}}
+                <div class="mobile-member-info">
+                    <div class="mobile-member-avatar">
+                        {{#if @member.avatar}}
+                        <img src="{{@member.avatar}}" alt="{{@member.name}}" class="member-avatar">
+                        {{else}}
+                        <div class="member-avatar member-avatar-default">
+                            <span class="member-initial">{{@member.name.[0]}}</span>
+                        </div>
+                        {{/if}}
+                    </div>
+                    <div class="mobile-member-details">
+                        <span class="member-name">{{@member.name}}</span>
+                        <span class="member-email">{{@member.email}}</span>
+                    </div>
+                </div>
+                <div class="mobile-member-links">
+                    <a href="#/portal/account" class="mobile-member-link btn btn-ghost" data-portal="account">
+                        Account Settings
+                    </a>
+                    <button class="mobile-member-link btn btn-ghost" data-members-signout>
+                        Sign Out
+                    </button>
+                </div>
+                {{else}}
+                <div class="mobile-auth-actions">
+                    <button class="auth-btn btn btn-ghost" data-portal="signin">
+                        Sign In
+                    </button>
+                    <button class="auth-btn btn btn-primary" data-portal="signup">
+                        Subscribe
+                    </button>
+                </div>
+                {{/if}}
+            </div>
+            {{/if}}
+        </div>
+    </div>
+
+    {{!-- Search Overlay --}}
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container glass">
+            <div class="search-header">
+                <h3 class="search-title">Search</h3>
+                <button class="search-close btn btn-ghost" id="searchClose" aria-label="Close search">
+                    <span class="close-icon">✕</span>
+                </button>
+            </div>
+            
+            <form class="search-form" role="search">
+                <div class="search-input-group">
+                    <input 
+                        type="search" 
+                        class="search-input input" 
+                        placeholder="Search posts..."
+                        id="searchInput"
+                        aria-label="Search posts"
+                        autocomplete="off"
+                    >
+                    <button type="submit" class="search-submit btn btn-primary">
+                        <span class="search-icon">🔍</span>
+                    </button>
+                </div>
+            </form>
+            
+            <div class="search-results" id="searchResults">
+                <div class="search-placeholder">
+                    <div class="search-icon-large">🔍</div>
+                    <p class="search-placeholder-text">Enter keywords to search posts</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

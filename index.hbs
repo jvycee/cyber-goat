@@ -1,0 +1,137 @@
+{{!< default}}
+
+{{!-- Homepage template for the cyberpunk Ghost theme --}}
+
+<div class="homepage-container">
+    {{!-- Hero Section --}}
+    <section class="hero-section glass">
+        <div class="hero-content">
+            <h1 class="hero-title text-glow">{{@site.title}}</h1>
+            <p class="hero-description">{{@site.description}}</p>
+            {{#if @site.cover_image}}
+            <div class="hero-image">
+                <img src="{{img_url @site.cover_image size="l"}}" alt="{{@site.title}}" class="cyberpunk-image">
+            </div>
+            {{/if}}
+        </div>
+        <div class="hero-decoration">
+            <div class="neon-line"></div>
+            <div class="grid-overlay"></div>
+        </div>
+    </section>
+
+    {{!-- Posts Grid --}}
+    <section class="posts-section">
+        <div class="section-header">
+            <h2 class="section-title">Latest Posts</h2>
+            <div class="section-decoration">
+                <span class="neon-dot"></span>
+                <span class="neon-line-small"></span>
+            </div>
+        </div>
+
+        {{#if posts}}
+        <div class="posts-grid">
+            {{#foreach posts}}
+                {{> post-card}}
+            {{/foreach}}
+        </div>
+
+        {{!-- Pagination --}}
+        {{#if pagination}}
+        <nav class="pagination-container">
+            <div class="pagination glass">
+                {{#if pagination.prev}}
+                <a href="{{page_url pagination.prev}}" class="pagination-btn pagination-prev" aria-label="Previous page">
+                    <span class="pagination-icon">←</span>
+                    <span class="pagination-text">Previous</span>
+                </a>
+                {{/if}}
+
+                <div class="pagination-info">
+                    <span class="pagination-current">{{pagination.page}}</span>
+                    <span class="pagination-separator">/</span>
+                    <span class="pagination-total">{{pagination.pages}}</span>
+                </div>
+
+                {{#if pagination.next}}
+                <a href="{{page_url pagination.next}}" class="pagination-btn pagination-next" aria-label="Next page">
+                    <span class="pagination-text">Next</span>
+                    <span class="pagination-icon">→</span>
+                </a>
+                {{/if}}
+            </div>
+        </nav>
+        {{/if}}
+
+        {{else}}
+        {{!-- No posts fallback --}}
+        <div class="no-posts glass">
+            <div class="no-posts-icon">⚡</div>
+            <h3 class="no-posts-title">No posts yet</h3>
+            <p class="no-posts-text">The neural network is still learning. Check back soon for fresh content.</p>
+        </div>
+        {{/if}}
+    </section>
+
+    {{!-- Featured Posts (if available) --}}
+    {{#get "posts" filter="featured:true" limit="3"}}
+    {{#if posts}}
+    <section class="featured-section">
+        <div class="section-header">
+            <h2 class="section-title">Featured</h2>
+            <div class="section-decoration">
+                <span class="neon-dot featured"></span>
+                <span class="neon-line-small featured"></span>
+            </div>
+        </div>
+        
+        <div class="featured-grid">
+            {{#foreach posts}}
+                {{> post-card featured=true}}
+            {{/foreach}}
+        </div>
+    </section>
+    {{/if}}
+    {{/get}}
+
+    {{!-- Newsletter Signup (if enabled) --}}
+    {{#if @labs.members}}
+    <section class="newsletter-section">
+        <div class="newsletter-container glass">
+            <div class="newsletter-content">
+                <h3 class="newsletter-title text-glow">Join the Network</h3>
+                <p class="newsletter-description">Stay connected to the latest updates and exclusive content.</p>
+                
+                <form class="newsletter-form" data-members-form="subscribe">
+                    <div class="newsletter-input-group">
+                        <input 
+                            type="email" 
+                            class="newsletter-input input" 
+                            placeholder="Enter your email address"
+                            data-members-email
+                            required
+                            aria-label="Email address"
+                        >
+                        <button type="submit" class="newsletter-btn btn btn-primary">
+                            <span class="btn-text">Subscribe</span>
+                            <span class="btn-loader">⚡</span>
+                        </button>
+                    </div>
+                    <div class="newsletter-feedback">
+                        <p class="newsletter-success" data-members-success>
+                            Welcome to the network! Check your email to confirm.
+                        </p>
+                        <p class="newsletter-error" data-members-error>
+                            Connection failed. Please try again.
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <div class="newsletter-decoration">
+                <div class="neon-circuit"></div>
+            </div>
+        </div>
+    </section>
+    {{/if}}
+</div>

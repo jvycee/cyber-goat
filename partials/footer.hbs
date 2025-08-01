@@ -1,0 +1,190 @@
+{{!-- Footer partial for the cyberpunk Ghost theme --}}
+
+<footer class="site-footer glass" role="contentinfo">
+    <div class="footer-container">
+        {{!-- Footer Main Content --}}
+        <div class="footer-main">
+            {{!-- Site Info --}}
+            <div class="footer-section footer-about">
+                <div class="footer-logo">
+                    {{#if @site.logo}}
+                    <img src="{{img_url @site.logo size="s"}}" alt="{{@site.title}}" class="footer-logo-img">
+                    {{else}}
+                    <span class="footer-site-title text-glow">{{@site.title}}</span>
+                    {{/if}}
+                </div>
+                
+                {{#if @site.description}}
+                <p class="footer-description">{{@site.description}}</p>
+                {{/if}}
+                
+                <div class="footer-stats">
+                    <div class="footer-stat">
+                        <span class="stat-number">{{@site.posts_count}}</span>
+                        <span class="stat-label">Posts</span>
+                    </div>
+                    <div class="footer-stat">
+                        <span class="stat-number">{{@site.members_count}}</span>
+                        <span class="stat-label">Members</span>
+                    </div>
+                </div>
+            </div>
+            
+            {{!-- Quick Links --}}
+            <div class="footer-section footer-links">
+                <h4 class="footer-section-title">Navigation</h4>
+                <ul class="footer-nav-list">
+                    <li class="footer-nav-item">
+                        <a href="{{@site.url}}" class="footer-nav-link">Home</a>
+                    </li>
+                    
+                    {{!-- Dynamic navigation links --}}
+                    {{#if @site.navigation}}
+                    {{#foreach @site.navigation}}
+                    <li class="footer-nav-item">
+                        <a href="{{url absolute="true"}}" class="footer-nav-link">{{label}}</a>
+                    </li>
+                    {{/foreach}}
+                    {{else}}
+                    {{!-- Default links if no custom navigation --}}
+                    {{#get "pages" filter="slug:about" limit="1"}}
+                    {{#if pages}}
+                    <li class="footer-nav-item">
+                        <a href="{{url}}" class="footer-nav-link">About</a>
+                    </li>
+                    {{/if}}
+                    {{/get}}
+                    
+                    {{#get "pages" filter="slug:contact" limit="1"}}
+                    {{#if pages}}
+                    <li class="footer-nav-item">
+                        <a href="{{url}}" class="footer-nav-link">Contact</a>
+                    </li>
+                    {{/if}}
+                    {{/get}}
+                    {{/if}}
+                    
+                    <li class="footer-nav-item">
+                        <a href="{{@site.url}}/rss/" class="footer-nav-link" target="_blank" rel="noopener">RSS</a>
+                    </li>
+                </ul>
+            </div>
+            
+            {{!-- Social Links --}}
+            <div class="footer-section footer-social">
+                <h4 class="footer-section-title">Connect</h4>
+                <div class="social-links">
+                    {{#if @site.twitter}}
+                    <a href="{{twitter_url @site.twitter}}" 
+                       class="social-link" 
+                       target="_blank" 
+                       rel="noopener"
+                       aria-label="Twitter">
+                        <span class="social-icon">🐦</span>
+                        <span class="social-label">Twitter</span>
+                    </a>
+                    {{/if}}
+                    
+                    {{#if @site.facebook}}
+                    <a href="{{facebook_url @site.facebook}}" 
+                       class="social-link" 
+                       target="_blank" 
+                       rel="noopener"
+                       aria-label="Facebook">
+                        <span class="social-icon">📘</span>
+                        <span class="social-label">Facebook</span>
+                    </a>
+                    {{/if}}
+                    
+                    {{!-- RSS Feed --}}
+                    <a href="{{@site.url}}/rss/" 
+                       class="social-link" 
+                       target="_blank" 
+                       rel="noopener"
+                       aria-label="RSS Feed">
+                        <span class="social-icon">📡</span>
+                        <span class="social-label">RSS</span>
+                    </a>
+                    
+                    {{!-- Email if available --}}
+                    {{#if @site.email}}
+                    <a href="mailto:{{@site.email}}" 
+                       class="social-link"
+                       aria-label="Email">
+                        <span class="social-icon">📧</span>
+                        <span class="social-label">Email</span>
+                    </a>
+                    {{/if}}
+                </div>
+            </div>
+            
+            {{!-- Newsletter Signup (if enabled) --}}
+            {{#if @labs.members}}
+            {{#unless @member}}
+            <div class="footer-section footer-newsletter">
+                <h4 class="footer-section-title">Stay Updated</h4>
+                <p class="newsletter-description">Get the latest posts delivered to your inbox.</p>
+                
+                <form class="footer-newsletter-form" data-members-form="subscribe">
+                    <div class="newsletter-input-group">
+                        <input 
+                            type="email" 
+                            class="newsletter-input input" 
+                            placeholder="Your email"
+                            data-members-email
+                            required
+                            aria-label="Email address"
+                        >
+                        <button type="submit" class="newsletter-btn btn btn-primary btn-sm">
+                            <span class="btn-text">Subscribe</span>
+                        </button>
+                    </div>
+                    <div class="newsletter-feedback">
+                        <p class="newsletter-success" data-members-success>
+                            Thanks! Check your email.
+                        </p>
+                        <p class="newsletter-error" data-members-error>
+                            Error. Please try again.
+                        </p>
+                    </div>
+                </form>
+            </div>
+            {{/unless}}
+            {{/if}}
+        </div>
+        
+        {{!-- Footer Bottom --}}
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                <p class="copyright-text">
+                    © {{date format="YYYY"}} {{@site.title}}. 
+                    Powered by <a href="https://ghost.org" target="_blank" rel="noopener" class="ghost-link">Ghost</a>
+                    {{#if @custom.show_theme_credit}}
+                    & <span class="theme-credit">Cyberpunk Theme</span>
+                    {{/if}}
+                </p>
+            </div>
+            
+            <div class="footer-actions">
+                {{!-- Back to Top --}}
+                <button class="back-to-top btn btn-ghost btn-sm" id="backToTop" aria-label="Back to top">
+                    <span class="btn-icon">↑</span>
+                    <span class="btn-text">Top</span>
+                </button>
+                
+                {{!-- Theme Toggle (small version) --}}
+                <button class="footer-theme-toggle btn btn-ghost btn-sm" 
+                        onclick="document.getElementById('themeToggle').click()" 
+                        aria-label="Change theme">
+                    <span class="btn-icon">🎨</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    {{!-- Footer Decorations --}}
+    <div class="footer-decorations">
+        <div class="footer-neon-line"></div>
+        <div class="footer-grid-pattern"></div>
+    </div>
+</footer>
