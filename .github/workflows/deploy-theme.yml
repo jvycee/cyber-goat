@@ -1,0 +1,75 @@
+name: Deploy Theme to Ghost
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build theme
+        run: npm run build
+
+      - name: Create theme zip
+        run: |
+          # Create a zip file excluding unnecessary files
+          zip -r cyberpunk-ghost-theme.zip . \
+            -x "*.git*" \
+            -x "node_modules/*" \
+            -x "*.DS_Store" \
+            -x "*.log" \
+            -x "*.md" \
+            -x ".github/*" \
+            -x "*.yml" \
+            -x "*.yaml" \
+            -x "src/*" \
+            -x "*.map" \
+            -x "test/*" \
+            -x "tests/*" \
+            -x "*.test.js" \
+            -x "*.spec.js" \
+            -x ".env*" \
+            -x "*.lock" \
+            -x "*.config.js" \
+            -x "CARMACK_EFFICIENCY_REPORT.md"
+
+      - name: Deploy to Ghost
+        uses: TryGhost/action-deploy-theme@v1
+        with:
+          api-url: ${{ secrets.GHOST_ADMIN_API_URL }}
+          api-key: ${{ secrets.GHOST_ADMIN_API_KEY }}
+          theme-name: cyberpunk-ghost-theme
+          file: cyberpunk-ghost-theme.zip
+
+      - name: Upload theme artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cyberpunk-ghost-theme
+          path: cyberpunk-ghost-theme.zip
+          retention-days: 30
+
+      - name: Create release (on tag push)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: cyberpunk-ghost-theme.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
