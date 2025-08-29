@@ -300,6 +300,9 @@ class ThemeSwitcher {
     // Update UI
     this.updateUI();
     
+    // FIXED: Auto-close theme switcher after selection
+    this.closeThemeSwitcher();
+    
     // Trigger theme change event
     document.dispatchEvent(new CustomEvent('cyberpunk:themeChange', {
       detail: { theme: themeName, themeData: theme }
