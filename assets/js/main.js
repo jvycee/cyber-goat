@@ -56,6 +56,11 @@
     
     // Apply stored theme
     dom.body.className = `theme-${state.theme}`;
+    
+    // Set initial active states for theme buttons
+    document.querySelectorAll('[data-theme]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.theme === state.theme);
+    });
   }
   
   // Single click handler for everything (event delegation)
@@ -240,7 +245,12 @@
     localStorage.setItem('cyberpunk-theme', themeName);
     dom.body.className = `theme-${themeName}`;
     
-    // Close theme switcher
+    // Update active states for both desktop and mobile theme buttons
+    document.querySelectorAll('[data-theme]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.theme === themeName);
+    });
+    
+    // Close desktop theme switcher
     const switcher = document.getElementById('themeSwitcher');
     switcher?.classList.remove('active');
   }

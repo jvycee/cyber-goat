@@ -371,7 +371,6 @@
 
 .toggle-icon {
   font-size: 1.2em;
-  animation: spin 3s linear infinite;
 }
 
 /* =====================================================
@@ -663,16 +662,10 @@
    ===================================================== */
 
 @media (max-width: 768px) {
-  .theme-switcher {
-    bottom: var(--space-3);
-    left: var(--space-3);
-  }
-  
+  /* Hide floating theme switcher on mobile */
+  .theme-switcher,
   .theme-toggle-btn {
-    bottom: var(--space-3);
-    left: var(--space-3);
-    width: 36px;
-    height: 36px;
+    display: none;
   }
   
   .toc-container {
@@ -690,10 +683,20 @@
 
 @media (max-width: 480px) {
   .theme-switcher-container {
-    min-width: 180px;
-    padding: var(--space-3);
+    min-width: 280px;
+    padding: var(--space-4);
   }
   
+  .theme-btn {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-base);
+    min-height: 44px;
+  }
+  
+  .theme-btn-color {
+    width: 24px;
+    height: 24px;
+  }
   .search-container {
     width: 95%;
     padding: var(--space-4);

@@ -91,6 +91,53 @@
     </ul>
     {{/if}}
     
+    {{!-- Theme Switcher (for mobile navigation) --}}
+    {{#if mobile}}
+    {{#if @custom.theme_switcher}}
+    <div class="mobile-theme-section">
+        <div class="mobile-theme-header">
+            <span class="mobile-theme-title">🎨 Theme</span>
+        </div>
+        <div class="mobile-theme-options">
+            <button class="mobile-theme-btn" 
+                    data-theme="cyberpunk" 
+                    aria-label="Cyberpunk theme">
+                <div class="mobile-theme-color" style="background: linear-gradient(135deg, #00ffff, #ff0080);"></div>
+                <span class="mobile-theme-name">Cyberpunk</span>
+            </button>
+            
+            <button class="mobile-theme-btn" 
+                    data-theme="neon" 
+                    aria-label="Neon theme">
+                <div class="mobile-theme-color" style="background: linear-gradient(135deg, #ff0080, #d946ef);"></div>
+                <span class="mobile-theme-name">Neon</span>
+            </button>
+            
+            <button class="mobile-theme-btn" 
+                    data-theme="matrix" 
+                    aria-label="Matrix theme">
+                <div class="mobile-theme-color" style="background: linear-gradient(135deg, #00ff41, #00ff88);"></div>
+                <span class="mobile-theme-name">Matrix</span>
+            </button>
+            
+            <button class="mobile-theme-btn" 
+                    data-theme="vaporwave" 
+                    aria-label="Vaporwave theme">
+                <div class="mobile-theme-color" style="background: linear-gradient(135deg, #ff006e, #bf00ff);"></div>
+                <span class="mobile-theme-name">Vaporwave</span>
+            </button>
+            
+            <button class="mobile-theme-btn" 
+                    data-theme="albuquerque" 
+                    aria-label="Albuquerque theme">
+                <div class="mobile-theme-color" style="background: linear-gradient(135deg, #ff9500, #00bfff);"></div>
+                <span class="mobile-theme-name">Albuquerque</span>
+            </button>
+        </div>
+    </div>
+    {{/if}}
+    {{/if}}
+    
     {{!-- Social Links (for mobile navigation) --}}
     {{#if mobile}}
     <div class="mobile-social-links">
