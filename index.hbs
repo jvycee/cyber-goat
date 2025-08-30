@@ -3,20 +3,14 @@
 {{!-- Homepage template for the cyberpunk Ghost theme --}}
 
 <div class="homepage-container">
-    {{!-- Hero Section --}}
-    <section class="hero-section glass">
-        <div class="hero-content">
+    {{!-- Minimal Hero Section --}}
+    <section class="hero-section-minimal glass">
+        <div class="hero-content-minimal">
             <h1 class="hero-title text-glow">{{@site.title}}</h1>
             <p class="hero-description">{{@site.description}}</p>
-            {{#if @site.cover_image}}
-            <div class="hero-image">
-                <img src="{{img_url @site.cover_image size="l"}}" alt="{{@site.title}}" class="cyberpunk-image">
-            </div>
-            {{/if}}
         </div>
         <div class="hero-decoration">
             <div class="neon-line"></div>
-            <div class="grid-overlay"></div>
         </div>
     </section>
 

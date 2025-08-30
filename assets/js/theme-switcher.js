@@ -150,8 +150,8 @@ class ThemeSwitcher {
           '--shadow-glow-green': '0 0 20px rgba(0, 255, 159, 0.4)'
         }
       },
-      synthwave: {
-        name: 'Synthwave',
+      albuquerque: {
+        name: 'Albuquerque',
         color: '#ff9500',
         vars: {
           '--bg-primary': '#0d1421',
@@ -223,6 +223,14 @@ class ThemeSwitcher {
       }
     });
 
+    // Close button
+    const closeBtn = document.getElementById('themeSwitcherClose');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        this.closeThemeSwitcher();
+      });
+    }
+
     // Close theme switcher when clicking outside
     document.addEventListener('click', (e) => {
       const themeSwitcher = document.getElementById('themeSwitcher');
@@ -252,7 +260,7 @@ class ThemeSwitcher {
       
       // Number keys (1-5) select themes
       const themeKeys = ['1', '2', '3', '4', '5'];
-      const themeNames = ['cyberpunk', 'neon', 'matrix', 'vaporwave', 'synthwave'];
+      const themeNames = ['cyberpunk', 'neon', 'matrix', 'vaporwave', 'albuquerque'];
       
       if (themeKeys.includes(e.key) && !e.ctrlKey && !e.metaKey && !e.altKey) {
         const activeElement = document.activeElement;

@@ -1,11 +1,20 @@
 {{!-- Theme switcher partial for the cyberpunk Ghost theme --}}
 
 {{#if @custom.theme_switcher}}
+{{!-- Theme toggle button (always visible) --}}
+<button class="theme-toggle-btn" 
+        id="themeToggle" 
+        aria-label="Toggle theme switcher"
+        title="Toggle color mode panel">
+    <span class="toggle-icon">🎨</span>
+</button>
+
+{{!-- Theme switcher panel (hidden by default) --}}
 <div class="theme-switcher" id="themeSwitcher">
     <div class="theme-switcher-container glass">
         <div class="theme-switcher-header">
             <span class="theme-switcher-title">Color Mode</span>
-            <span class="theme-switcher-icon">🎨</span>
+            <button class="theme-switcher-close" id="themeSwitcherClose" aria-label="Close theme switcher">✕</button>
         </div>
         
         <div class="theme-options">
@@ -41,21 +50,12 @@
                 <span class="theme-btn-name">Vaporwave</span>
             </button>
             
-            <button class="theme-btn theme-btn-synthwave" 
-                    data-theme="synthwave" 
-                    aria-label="Synthwave theme"
-                    title="Synthwave - Orange-gold with blue accents">
+            <button class="theme-btn theme-btn-albuquerque" 
+                    data-theme="albuquerque" 
+                    aria-label="Albuquerque theme"
+                    title="Albuquerque - Orange-gold with blue accents">
                 <div class="theme-btn-color" style="background: linear-gradient(135deg, #ff9500, #00bfff);"></div>
-                <span class="theme-btn-name">Synthwave</span>
-            </button>
-        </div>
-        
-        <div class="theme-switcher-footer">
-            <button class="theme-toggle-btn" 
-                    id="themeToggle" 
-                    aria-label="Toggle theme switcher"
-                    title="Toggle color mode panel">
-                <span class="toggle-icon">⚡</span>
+                <span class="theme-btn-name">Albuquerque</span>
             </button>
         </div>
     </div>
@@ -120,7 +120,7 @@
             '--accent': '#ff006e',
             '--accent-secondary': '#bf00ff'
         },
-        synthwave: {
+        albuquerque: {
             '--bg-primary': '#0d1421',
             '--bg-secondary': '#162030',
             '--bg-tertiary': '#1f2c3f',

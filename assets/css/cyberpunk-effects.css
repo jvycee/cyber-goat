@@ -62,10 +62,7 @@
   100% { transform: translateY(0px); opacity: 1; }
 }
 
-@keyframes scan-line {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
-}
+/* Scan line animation removed for cleaner experience */
 
 @keyframes circuit-flow {
   0% { background-position: 0% 50%; }
@@ -233,15 +230,19 @@
 
 .theme-switcher {
   position: fixed;
-  bottom: var(--space-4);
+  bottom: calc(var(--space-4) + 50px); /* Above the toggle button */
   left: var(--space-4);
   z-index: 1000;
-  transform: translateX(-100%);
-  transition: transform var(--duration-normal) var(--ease-out);
+  transform: translateX(calc(-100% - 20px));
+  opacity: 0;
+  pointer-events: none;
+  transition: transform var(--duration-normal) var(--ease-out), opacity var(--duration-normal) var(--ease-out);
 }
 
 .theme-switcher.active {
   transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .theme-switcher-container {
@@ -263,6 +264,28 @@
   font-size: var(--font-sm);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.theme-switcher-close {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.theme-switcher-close:hover {
+  color: var(--text-accent);
+  background: var(--bg-tertiary);
+  transform: rotate(90deg);
 }
 
 .theme-options {
@@ -364,18 +387,7 @@
   animation: neon-flicker 5s infinite;
 }
 
-.scan-line {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0.3;
-  animation: scan-line 8s linear infinite;
-  pointer-events: none;
-  z-index: 1000;
-}
+/* Scan line effect removed */
 
 .glitch-text {
   position: relative;
@@ -463,6 +475,7 @@
    POST-SPECIFIC EFFECTS
    ===================================================== */
 
+/* Post card mouse glow effect */
 .post-card-glow {
   position: absolute;
   top: 0;
@@ -471,13 +484,15 @@
   bottom: 0;
   border-radius: 12px;
   background: radial-gradient(
-    600px circle at var(--mouse-x) var(--mouse-y),
-    rgba(0, 255, 255, 0.1),
-    transparent 40%
+    300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 255, 255, 0.15) 0%,
+    rgba(255, 0, 128, 0.08) 30%,
+    transparent 50%
   );
   opacity: 0;
-  transition: opacity var(--duration-fast);
+  transition: opacity var(--duration-normal) var(--ease-out);
   pointer-events: none;
+  z-index: 1;
 }
 
 .post-card:hover .post-card-glow {

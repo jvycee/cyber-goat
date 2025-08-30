@@ -477,9 +477,15 @@ select.input {
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 100;
-  border-radius: 0 0 12px 12px;
-  margin-bottom: var(--space-6);
+  z-index: 1000;
+  border-radius: 0;
+  margin-bottom: 0;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+/* Add shadow when scrolled */
+.site-header.scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), var(--shadow-glow);
 }
 
 .header-container {
@@ -726,6 +732,45 @@ select.input {
   box-shadow: 0 4px 12px rgba(0, 255, 255, 0.2);
 }
 
+/* Compact social links for footer */
+.social-links-compact {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.social-link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: 50%;
+  transition: all var(--duration-fast) var(--ease-out);
+  position: relative;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+}
+
+.social-link-icon:hover {
+  color: var(--accent);
+  background: var(--bg-quaternary);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), var(--shadow-glow);
+  border-color: var(--accent);
+}
+
+.social-link-icon svg {
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.social-link-icon:hover svg {
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
 /* =====================================================
    FOOTER COMPONENT
    ===================================================== */
@@ -745,9 +790,17 @@ select.input {
 
 .footer-main {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-8);
   margin-bottom: var(--space-8);
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Make footer more compact */
+.footer-section {
+  text-align: center;
 }
 
 .footer-section-title {
@@ -865,6 +918,14 @@ select.input {
    RESPONSIVE DESIGN
    ===================================================== */
 
+/* Tablet - 2 column footer */
+@media (max-width: 992px) {
+  .footer-main {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+}
+
 @media (max-width: 768px) {
   .mobile-menu-toggle {
     display: flex;
@@ -881,6 +942,10 @@ select.input {
   .footer-main {
     grid-template-columns: 1fr;
     gap: var(--space-6);
+  }
+  
+  .footer-section {
+    text-align: left;
   }
   
   .footer-bottom {

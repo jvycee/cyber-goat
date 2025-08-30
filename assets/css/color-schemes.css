@@ -251,11 +251,11 @@
 }
 
 /* =====================================================
-   THEME 5: SYNTHWAVE
+   THEME 5: ALBUQUERQUE
    Orange-gold theme with blue accents
    ===================================================== */
 
-.theme-synthwave {
+.theme-albuquerque {
   --bg-primary: #0d1421;
   --bg-secondary: #162030;
   --bg-tertiary: #1f2c3f;
@@ -331,14 +331,14 @@
   background: rgba(255, 0, 110, 0.1);
 }
 
-/* Synthwave theme specific styles */
-.theme-synthwave .cyberpunk-grid {
+/* Albuquerque theme specific styles */
+.theme-albuquerque .cyberpunk-grid {
   background-image:
     linear-gradient(rgba(255, 149, 0, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 149, 0, 0.03) 1px, transparent 1px);
 }
 
-.theme-synthwave code {
+.theme-albuquerque code {
   color: var(--neon-orange);
   background: rgba(255, 149, 0, 0.1);
 }

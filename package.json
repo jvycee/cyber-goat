@@ -52,7 +52,7 @@
       },
       "default_theme": {
         "type": "select",
-        "options": ["cyberpunk", "neon", "matrix", "vaporwave", "synthwave"],
+        "options": ["cyberpunk", "neon", "matrix", "vaporwave", "albuquerque"],
         "default": "cyberpunk",
         "group": "theme"
       },
@@ -103,6 +103,26 @@
         "type": "boolean",
         "default": true,
         "group": "layout"
+      },
+      "threads_url": {
+        "type": "text",
+        "default": "",
+        "group": "social"
+      },
+      "bluesky_url": {
+        "type": "text", 
+        "default": "",
+        "group": "social"
+      },
+      "medium_url": {
+        "type": "text",
+        "default": "",
+        "group": "social"
+      },
+      "github_url": {
+        "type": "text",
+        "default": "",
+        "group": "social"
       }
     }
   },
@@ -154,7 +174,7 @@
       "preview-neon.jpg", 
       "preview-matrix.jpg",
       "preview-vaporwave.jpg",
-      "preview-synthwave.jpg"
+      "preview-albuquerque.jpg"
     ],
     "compatibility": {
       "ghost_min": "5.0.0",
