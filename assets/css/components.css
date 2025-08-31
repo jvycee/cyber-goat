@@ -97,18 +97,20 @@
 
 /* Button Variants */
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-  color: var(--bg-primary);
-  border-color: var(--accent);
-  box-shadow: var(--shadow-glow);
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 10px var(--accent), inset 0 0 10px rgba(0, 255, 255, 0.1);
   font-weight: 600;
+  backdrop-filter: blur(10px);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--accent-secondary), var(--accent));
-  color: var(--bg-primary);
+  background: rgba(0, 255, 255, 0.1);
+  color: var(--accent);
+  border-color: var(--accent-secondary);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-glow), 0 6px 20px rgba(0, 255, 255, 0.4);
+  box-shadow: 0 0 20px var(--accent), 0 6px 20px rgba(0, 255, 255, 0.4), inset 0 0 15px rgba(0, 255, 255, 0.2);
 }
 
 .btn-ghost {
@@ -814,27 +816,6 @@ select.input {
   margin-bottom: var(--space-4);
 }
 
-.footer-stats {
-  display: flex;
-  gap: var(--space-4);
-}
-
-.footer-stat {
-  text-align: center;
-}
-
-.stat-number {
-  display: block;
-  font-size: var(--font-xl);
-  font-weight: 700;
-  color: var(--accent);
-}
-
-.stat-label {
-  font-size: var(--font-sm);
-  color: var(--text-tertiary);
-  text-transform: uppercase;
-}
 
 .footer-nav-list {
   list-style: none;

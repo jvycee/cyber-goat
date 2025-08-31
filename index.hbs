@@ -89,43 +89,4 @@
     {{/if}}
     {{/get}}
 
-    {{!-- Newsletter Signup (if enabled) --}}
-    {{#if @site.members_enabled}}
-    <section class="newsletter-section">
-        <div class="newsletter-container glass">
-            <div class="newsletter-content">
-                <h3 class="newsletter-title text-glow">Join the Network</h3>
-                <p class="newsletter-description">Stay connected to the latest updates and exclusive content.</p>
-                
-                <form class="newsletter-form" data-members-form="subscribe">
-                    <div class="newsletter-input-group">
-                        <input 
-                            type="email" 
-                            class="newsletter-input input" 
-                            placeholder="Enter your email address"
-                            data-members-email
-                            required
-                            aria-label="Email address"
-                        >
-                        <button type="submit" class="newsletter-btn btn btn-primary">
-                            <span class="btn-text">Subscribe</span>
-                            <span class="btn-loader">⚡</span>
-                        </button>
-                    </div>
-                    <div class="newsletter-feedback">
-                        <p class="newsletter-success" data-members-success>
-                            Welcome to the network! Check your email to confirm.
-                        </p>
-                        <p class="newsletter-error" data-members-error>
-                            Connection failed. Please try again.
-                        </p>
-                    </div>
-                </form>
-            </div>
-            <div class="newsletter-decoration">
-                <div class="neon-circuit"></div>
-            </div>
-        </div>
-    </section>
-    {{/if}}
 </div>

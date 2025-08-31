@@ -3,6 +3,10 @@
  * Direct, efficient, no unnecessary abstractions
  */
 
+// Import other modules for bundling
+import './theme-switcher.js';
+import './neon-effects.js';
+
 (function() {
   'use strict';
   
