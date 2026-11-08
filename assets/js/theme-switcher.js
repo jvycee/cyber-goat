@@ -7,7 +7,9 @@ class ThemeSwitcher {
   constructor() {
     this.THEME_KEY = 'cyberpunk-theme';
     this.DEFAULT_THEME = 'cyberpunk';
-    this.currentTheme = localStorage.getItem(this.THEME_KEY) || this.DEFAULT_THEME;
+    this.THEME_NAMES = ['cyberpunk', 'neon', 'matrix', 'vaporwave', 'synthwave'];
+    this.themeTransitionTimer = null;
+    this.currentTheme = this.resolveInitialTheme();
     
     this.themes = {
       cyberpunk: {
@@ -269,6 +271,29 @@ class ThemeSwitcher {
   }
 
   /**
+   * Empty storage follows the theme class already applied from
+   * @custom.default_theme. A stored value is left unchanged.
+   */
+  resolveInitialTheme() {
+    const stored = localStorage.getItem(this.THEME_KEY);
+    if (stored) return stored;
+    return this.ownedThemeName(document.body) || this.DEFAULT_THEME;
+  }
+
+  ownedThemeName(element) {
+    const tokens = String(element?.className || '').split(/\s+/);
+    return this.THEME_NAMES.find((name) => tokens.includes(`theme-${name}`)) || null;
+  }
+
+  replaceOwnedThemeClass(themeName) {
+    const tokens = String(document.body.className || '').split(/\s+/).filter((token) => {
+      return token && !this.THEME_NAMES.some((name) => token === `theme-${name}`);
+    });
+    tokens.push(`theme-${themeName}`);
+    document.body.className = tokens.join(' ');
+  }
+
+  /**
    * Set theme
    */
   setTheme(themeName) {
@@ -279,12 +304,9 @@ class ThemeSwitcher {
 
     const theme = this.themes[themeName];
     const root = document.documentElement;
-    
-    // Add transition class for smooth theme change
+
+    this.replaceOwnedThemeClass(themeName);
     document.body.classList.add('theme-transition');
-    
-    // Update body class
-    document.body.className = document.body.className.replace(/theme-\w+/g, '') + ` theme-${themeName}`;
     
     // Apply CSS variables
     Object.entries(theme.vars).forEach(([prop, value]) => {
@@ -306,7 +328,8 @@ class ThemeSwitcher {
     }));
     
     // Remove transition class after animation
-    setTimeout(() => {
+    clearTimeout(this.themeTransitionTimer);
+    this.themeTransitionTimer = setTimeout(() => {
       document.body.classList.remove('theme-transition');
     }, 300);
     
