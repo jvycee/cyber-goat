@@ -528,6 +528,11 @@
   font-size: var(--font-xs);
 }
 
+.toc-container.collapsed .toc-title,
+.toc-container.collapsed .toc-nav {
+  display: none;
+}
+
 .toc-nav a {
   display: block;
   padding: var(--space-1) 0;
