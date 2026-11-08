@@ -445,6 +445,13 @@ class CyberpunkTheme {
   }
 
   /**
+   * Close the member menu. Escape uses the same dismiss as an outside click.
+   */
+  closeMemberMenu() {
+    document.getElementById('memberDropdown')?.classList.remove('active');
+  }
+
+  /**
    * Initialize newsletter forms
    */
   initNewsletterForms() {
@@ -598,6 +605,7 @@ class CyberpunkTheme {
     if (e.key === 'Escape') {
       this.closeSearch();
       this.closeMobileMenu();
+      this.closeMemberMenu();
     }
     
     // CMD/Ctrl + K opens search
