@@ -68,12 +68,20 @@
     // Theme persistence and initialization
     const THEME_KEY = 'cyberpunk-theme';
     const DEFAULT_THEME = 'cyberpunk';
+    const THEME_NAMES = ['cyberpunk', 'neon', 'matrix', 'vaporwave', 'synthwave'];
     
     // Get saved theme or use default
     const savedTheme = localStorage.getItem(THEME_KEY) || '{{@custom.default_theme}}';
     
-    // Apply theme immediately to prevent flash
-    document.body.className = document.body.className.replace(/theme-\w+/g, '') + ' theme-' + savedTheme;
+    // Apply theme immediately to prevent flash. Only the five owned
+    // theme tokens are replaced, so theme-transition and other classes stay.
+    const tokens = document.body.className.split(/\s+/).filter(function(token) {
+        return token && !THEME_NAMES.some(function(name) {
+            return token === 'theme-' + name;
+        });
+    });
+    tokens.push('theme-' + savedTheme);
+    document.body.className = tokens.join(' ');
     
     // Set theme variables immediately
     const themes = {
