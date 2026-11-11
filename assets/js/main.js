@@ -8,6 +8,7 @@
  */
 class CyberpunkTheme {
   constructor() {
+    this.searchRequestId = 0;
     this.init();
   }
 
@@ -129,7 +130,7 @@ class CyberpunkTheme {
     
     toggleBtn?.classList.add('active');
     mobileNav?.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    this.syncBodyScrollLock();
   }
 
   /**
@@ -141,7 +142,16 @@ class CyberpunkTheme {
     
     toggleBtn?.classList.remove('active');
     mobileNav?.classList.remove('active');
-    document.body.style.overflow = '';
+    this.syncBodyScrollLock();
+  }
+
+  /**
+   * Keep the page locked while either overlay is open.
+   */
+  syncBodyScrollLock() {
+    const menuOpen = document.getElementById('mobileNavigation')?.classList.contains('active');
+    const searchOpen = document.getElementById('searchOverlay')?.classList.contains('active');
+    document.body.style.overflow = (menuOpen || searchOpen) ? 'hidden' : '';
   }
 
   /**
@@ -185,7 +195,7 @@ class CyberpunkTheme {
     const searchInput = document.getElementById('searchInput');
     
     searchOverlay?.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    this.syncBodyScrollLock();
     
     // Focus search input with a slight delay
     setTimeout(() => {
@@ -200,7 +210,7 @@ class CyberpunkTheme {
     const searchOverlay = document.getElementById('searchOverlay');
     
     searchOverlay?.classList.remove('active');
-    document.body.style.overflow = '';
+    this.syncBodyScrollLock();
   }
 
   /**
@@ -208,8 +218,11 @@ class CyberpunkTheme {
    */
   async performSearch(query) {
     const resultsContainer = document.getElementById('searchResults');
-    
-    if (!query.trim() || !resultsContainer) {
+    const requestId = ++this.searchRequestId;
+
+    if (!resultsContainer) return;
+
+    if (!query.trim()) {
       resultsContainer.innerHTML = `
         <div class="search-placeholder">
           <div class="search-icon-large">🔍</div>
@@ -231,10 +244,14 @@ class CyberpunkTheme {
     try {
       // Use Ghost's built-in search API
       const response = await fetch(`${window.location.origin}/ghost/api/v3/content/posts/?key=${window.ghostPublicApiKey}&q=${encodeURIComponent(query)}&limit=5&fields=title,slug,excerpt,published_at,feature_image`);
+      if (requestId !== this.searchRequestId) return;
+
       const data = await response.json();
-      
+      if (requestId !== this.searchRequestId) return;
+
       this.displaySearchResults(data.posts || []);
     } catch (error) {
+      if (requestId !== this.searchRequestId) return;
       console.error('Search error:', error);
       resultsContainer.innerHTML = `
         <div class="search-error">

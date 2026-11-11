@@ -122,8 +122,8 @@
     "css:watch": "postcss assets/css/screen.css -o assets/built/screen.css --watch",
     "js:build": "esbuild assets/js/main.js --bundle --minify --target=es2018 --outfile=assets/built/main.js",
     "js:watch": "esbuild assets/js/main.js --bundle --watch --target=es2018 --outfile=assets/built/main.js",
-    "zip": "npm run build && cd .. && zip -r cyberpunk-ghost-theme.zip cyberpunk-ghost-theme/ -x '*/node_modules/*' '*/.git/*' '*/src/*' '*/.DS_Store'",
-    "test": "echo 'Theme validation would go here'",
+    "zip": "npm run build && cd .. && zip -r cyberpunk-ghost-theme.zip cyberpunk-ghost-theme/ -x '*/node_modules/*' '*/.git/*' '*/src/*' '*/test/*' '*/.DS_Store'",
+    "test": "node --test test/client-state-lifecycle.test.mjs",
     "validate": "ghost-theme-validator .",
     "clean": "rm -rf assets/built node_modules"
   },

@@ -5,6 +5,7 @@
 
 class NeonEffects {
   constructor() {
+    this.matrixRainTimer = null;
     this.init();
   }
 
@@ -565,6 +566,8 @@ class NeonEffects {
    * Update theme-specific effects
    */
   updateThemeEffects(themeName) {
+    this.stopMatrixRain();
+
     // Remove existing theme effects
     const existingEffects = document.querySelectorAll('.theme-effect');
     existingEffects.forEach(effect => effect.remove());
@@ -613,10 +616,16 @@ class NeonEffects {
     this.startMatrixRain(matrixCanvas);
   }
 
-  /**
-   * Start Matrix rain animation
-   */
+  stopMatrixRain() {
+    if (this.matrixRainTimer != null) {
+      clearInterval(this.matrixRainTimer);
+      this.matrixRainTimer = null;
+    }
+  }
+
   startMatrixRain(canvas) {
+    this.stopMatrixRain();
+
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -633,6 +642,11 @@ class NeonEffects {
     }
     
     const draw = () => {
+      if (!canvas.isConnected) {
+        this.stopMatrixRain();
+        return;
+      }
+
       ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
@@ -650,7 +664,7 @@ class NeonEffects {
       }
     };
     
-    setInterval(draw, 35);
+    this.matrixRainTimer = setInterval(draw, 35);
   }
 
   /**
@@ -676,6 +690,8 @@ class NeonEffects {
    * Cleanup function
    */
   destroy() {
+    this.stopMatrixRain();
+
     // Remove particle canvas
     if (this.canvas) {
       this.canvas.remove();
