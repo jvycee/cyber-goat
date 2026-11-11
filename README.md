@@ -215,7 +215,7 @@ cyberpunk-ghost-theme/
 For support and questions:
 - **Documentation**: [Theme Wiki](https://github.com/jayceelewis/cyberpunk-ghost-theme/wiki)
 - **Issues**: [GitHub Issues](https://github.com/jayceelewis/cyberpunk-ghost-theme/issues)
-- **Email**: jvycee@pm.me
+- **Email**: hello@cybercatlabs.com
 
 ## 📄 License
 
